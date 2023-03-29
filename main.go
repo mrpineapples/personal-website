@@ -1,12 +1,12 @@
 package main
 
 import (
-	"net/http"
 	"path/filepath"
 	"strings"
 
 	"github.com/gin-contrib/multitemplate"
 	"github.com/gin-gonic/gin"
+	"github.com/mrpineapples/personal-website/routes"
 )
 
 func loadTemplates() multitemplate.Renderer {
@@ -46,28 +46,7 @@ func main() {
 	// serve the files in the "static" directory
 	r.Static("/public", "./public")
 	r.HTMLRender = loadTemplates()
-
-	r.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "home", gin.H{
-			"pageTitle": "Michael's Site",
-		})
-	})
-
-	r.GET("/about", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "about", gin.H{
-			"pageTitle": "Michael's Site | About",
-		})
-	})
-
-	r.GET("/contact", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"contact": gin.H{
-				"github":   "https://github.com/mrpineapples",
-				"linkedin": "https://www.linkedin.com/in/michaelmiranda18/",
-				"twitter":  "https://twitter.com/mrpineapples24",
-			},
-		})
-	})
+	routes.InitializeRoutes(r)
 
 	// start the server on port 8080
 	if err := r.Run(":8080"); err != nil {
