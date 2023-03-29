@@ -1,0 +1,24 @@
+version: "3"
+
+tasks:
+  get-air:
+    cmds:
+      - cmd: |
+          if ! type ./bin/air &> /dev/null; then
+            curl -sSfL https://raw.githubusercontent.com/cosmtrek/air/master/install.sh | sh -s
+          fi
+        silent: true
+  get-tailwind:
+    cmds:
+      - cmd: |
+          if ! type ./bin/tailwindcss &> /dev/null; then
+          	curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-macos-x64
+            chmod +x tailwindcss-macos-x64
+            mkdir -p bin
+            mv tailwindcss-macos-x64 bin/tailwindcss
+          fi
+        silent: true
+  dev:
+    deps: [get-air, get-tailwind]
+    cmds:
+      - ./bin/air & ./bin/tailwindcss -i tailwind.css -o public/styles/tailwind.css --watch
