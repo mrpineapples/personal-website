@@ -1,0 +1,13 @@
+*.o
+*.a
+*.so
+*.test
+*.prof
+*.out
+
+public/
+bin/
+tmp/
+
+# build output
+air
