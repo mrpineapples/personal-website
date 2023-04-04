@@ -1,0 +1,23 @@
+{{ define "article-form-fields" }}
+<div class="flex flex-col mb-4">
+  <label for="title">Title</label>
+  <input class="px-1" required type="text" name="title" id="title" />
+</div>
+<div class="flex flex-col mb-4">
+  <label for="description">Description</label>
+  <textarea class="px-1" name="description" id="description" class></textarea>
+</div>
+<div class="flex flex-col mb-4">
+  <label for="markdown">Markdown</label>
+  <textarea
+    class="px-1"
+    required
+    name="markdown"
+    id="markdown"
+    class
+  ></textarea>
+</div>
+
+<a href="/" class="btn btn-secondary">Cancel</a>
+<button type="submit" class="btn btn-primary">Save</button>
+{{ end }}

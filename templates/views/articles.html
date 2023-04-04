@@ -1,0 +1,33 @@
+{{ define "yield" }}
+<div
+  class="container p-6 md:px-0 md:py12 mx-auto flex flex-wrap flex-col md:flex-row items-center"
+>
+  <!--Left Col-->
+  <div
+    class="flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden"
+  >
+    <h1 class="my-4 text-5xl font-bold leading-tight text-gray-800">
+      All My Articles 📝
+    </h1>
+    <ul>
+      {{ if .articles }} {{ range .articles }}
+      <li class="leading-normal text-2xl ml-4 hover:text-blue-500">
+        <a href="/articles/{{ .Slug }}">{{ .Title }}</a>
+      </li>
+      {{ end }} {{ else }}
+      <li class="leading-normal text-2xl mb-8">
+        No articles exist, how sad 😢
+      </li>
+      {{ end }}
+    </ul>
+  </div>
+  <!--Right Col-->
+  <div class="w-full xl:w-3/5 py-6 overflow-y-hidden">
+    <img
+      class="mx-auto"
+      src="https://via.placeholder.com/600x350"
+      alt="Placeholder Image"
+    />
+  </div>
+</div>
+{{ end }}
