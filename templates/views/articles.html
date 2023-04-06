@@ -1,33 +1,25 @@
 {{ define "yield" }}
-<div
-  class="container p-6 md:px-0 md:py12 mx-auto flex flex-wrap flex-col md:flex-row items-center"
->
-  <!--Left Col-->
-  <div
-    class="flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden"
-  >
-    <h1 class="my-4 text-5xl font-bold leading-tight text-gray-800">
-      All My Articles 📝
-    </h1>
-    <ul>
-      {{ if .articles }} {{ range .articles }}
-      <li class="leading-normal text-2xl ml-4 hover:text-blue-500">
-        <a href="/articles/{{ .Slug }}">{{ .Title }}</a>
-      </li>
-      {{ end }} {{ else }}
-      <li class="leading-normal text-2xl mb-8">
-        No articles exist, how sad 😢
-      </li>
-      {{ end }}
-    </ul>
-  </div>
-  <!--Right Col-->
-  <div class="w-full xl:w-3/5 py-6 overflow-y-hidden">
-    <img
-      class="mx-auto"
-      src="https://via.placeholder.com/600x350"
-      alt="Placeholder Image"
-    />
-  </div>
+<div class="max-w-4xl p-6 md:px-0 md:py12 mx-auto">
+  <h1 class="my-4 text-5xl font-bold leading-tight text-gray-800">
+    All My Articles 📝
+  </h1>
+  <ul>
+    {{ if .Articles }} {{ range .Articles }}
+    <li class="flex leading-normal border-t py-8">
+      <p class="mr-10">{{ .CreatedAt | formatAsDate }}</p>
+      <div class="flex flex-col">
+        <p class="text-2xl font-medium mb-4">{{ .Title }}</p>
+        {{ if .Description }}
+        <p class="text-gray-400">{{ .Description }}</p>
+        {{ end }}
+        <a class="mt-4 hover:text-blue-500" href="/articles/{{ .Slug }}">Read More</a>
+      </div>
+    </li>
+    {{ end }} {{ else }}
+    <li class="leading-normal text-2xl mb-8">
+      No articles exist, how sad 😢
+    </li>
+    {{ end }}
+  </ul>
 </div>
 {{ end }}

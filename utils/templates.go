@@ -1,8 +1,10 @@
 package utils
 
 import (
+	"html/template"
 	"path/filepath"
 	"strings"
+	"time"
 
 	"github.com/gin-contrib/multitemplate"
 )
@@ -10,6 +12,12 @@ import (
 func LoadTemplates() multitemplate.Renderer {
 	templatesDir := "./templates/"
 	r := multitemplate.NewRenderer()
+
+	funcMap := template.FuncMap{
+		"formatAsDate": func(t time.Time) string {
+			return t.Format("January 2, 2006")
+		},
+	}
 
 	layouts, err := filepath.Glob(templatesDir + "layouts/*.html")
 	if err != nil {
@@ -34,7 +42,7 @@ func LoadTemplates() multitemplate.Renderer {
 		files := append(assets, view)
 		fileName := filepath.Base(view)
 		templateName := strings.TrimSuffix(fileName, ".html")
-		r.AddFromFiles(templateName, files...)
+		r.AddFromFilesFuncs(templateName, funcMap, files...)
 	}
 	return r
 }
