@@ -1,4 +1,4 @@
-package routes
+package controllers
 
 import (
 	"bytes"
@@ -15,7 +15,7 @@ import (
 	"github.com/mrpineapples/personal-website/utils"
 )
 
-func getArticle(c *gin.Context) {
+func GetArticle(c *gin.Context) {
 	sqlStatement := `
 		SELECT title, description, markdown, created_at, updated_at
 		FROM articles
@@ -45,11 +45,11 @@ func getArticle(c *gin.Context) {
 	})
 }
 
-func getArticles(c *gin.Context) {
+func GetArticles(c *gin.Context) {
 	sqlStatement := `
 		SELECT id, title, description, markdown, slug, created_at, updated_at
 		FROM articles
-		ORDER BY id ASC;
+		ORDER BY created_at DESC;
 	`
 	rows, err := models.Pool.Query(models.DBContext, sqlStatement)
 	if err != nil {
@@ -78,15 +78,15 @@ func getArticles(c *gin.Context) {
 	})
 }
 
-// newArticle renders the new article view
-func newArticle(c *gin.Context) {
+// NewArticle renders the new article view
+func NewArticle(c *gin.Context) {
 	c.HTML(http.StatusOK, "new-article", gin.H{
 		"pageTitle": "Michael's Site Admin | Create An Article",
 	})
 }
 
-// createArticle creates a new article in our database
-func createArticle(c *gin.Context) {
+// CreateArticle creates a new article in our database
+func CreateArticle(c *gin.Context) {
 	var articleInput struct {
 		Title       string `form:"title"`
 		Description string `form:"description"`
@@ -118,8 +118,8 @@ func createArticle(c *gin.Context) {
 	c.Redirect(http.StatusSeeOther, "/articles/"+article.Slug)
 }
 
-// editArticle renders the edit article view
-func editArticle(c *gin.Context) {
+// EditArticle renders the edit article view
+func EditArticle(c *gin.Context) {
 	sqlStatement := `
 		SELECT id, title, description, markdown, created_at, updated_at
 		FROM articles
@@ -143,7 +143,7 @@ func editArticle(c *gin.Context) {
 	})
 }
 
-func updateArticle(c *gin.Context) {
+func UpdateArticle(c *gin.Context) {
 	var articleInput struct {
 		Title       string `form:"title"`
 		Description string `form:"description"`
@@ -178,7 +178,7 @@ func updateArticle(c *gin.Context) {
 	c.Redirect(http.StatusSeeOther, "/articles/"+article.Slug)
 }
 
-func deleteArticle(c *gin.Context) {
+func DeleteArticle(c *gin.Context) {
 	sqlStatement := `
 		DELETE FROM articles
 		WHERE id = $1;
