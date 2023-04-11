@@ -1,3 +1,7 @@
+github.com/alecthomas/chroma/v2 v2.2.0 h1:Aten8jfQwUqEdadVFFjNyjx7HTexhKP0XuqBG67mRDY=
+github.com/alecthomas/chroma/v2 v2.2.0/go.mod h1:vf4zrexSH54oEjJ7EdB65tGNHmH3pGZmVkgTP5RHvAs=
+github.com/alecthomas/repr v0.0.0-20220113201626-b1b626ac65ae h1:zzGwJfFlFGD94CyyYwCJeSuD32Gj9GTaSi5y9hoVzdY=
+github.com/alecthomas/repr v0.0.0-20220113201626-b1b626ac65ae/go.mod h1:2kn6fqh/zIyPLmm3ugklbEi5hg5wS435eygvNfaDQL8=
 github.com/bytedance/sonic v1.5.0/go.mod h1:ED5hyg4y6t3/9Ku1R6dU/4KyJ48DZ4jPhfY1O2AihPM=
 github.com/bytedance/sonic v1.8.7 h1:d3sry5vGgVq/OpgozRUNP6xBsSo0mtNdwliApw+SAMQ=
 github.com/bytedance/sonic v1.8.7/go.mod h1:i736AoUSYt75HyZLoJW9ERYxcy6eaN6h4BZXU064P/U=
@@ -8,6 +12,9 @@ github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ3
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
+github.com/dlclark/regexp2 v1.4.0/go.mod h1:2pZnwuY/m+8K6iRw6wQdMtk+rH5tNGR1i55kozfMjCc=
+github.com/dlclark/regexp2 v1.7.0 h1:7lJfhqlPssTb1WQx4yvTHN0uElPEv52sbaECrAQxjAo=
+github.com/dlclark/regexp2 v1.7.0/go.mod h1:DHkYz0B9wPfa6wondMfaivmHpzrQ3v9q8cnmRbL6yW8=
 github.com/gin-contrib/multitemplate v0.0.0-20230212012517-45920c92c271 h1:s+boMV47gwTyff2PL+k6V33edJpp+K5y3QPzZlRhno8=
 github.com/gin-contrib/multitemplate v0.0.0-20230212012517-45920c92c271/go.mod h1:XLLtIXoP9+9zGcEDc7gAGV3AksGPO+vzv4kXHMJSdU0=
 github.com/gin-contrib/sse v0.1.0 h1:Y/yl/+YNO8GZSjAhjMsSuLt29uWRFHdHYUb5lYOV9qE=
@@ -96,8 +103,11 @@ github.com/ugorji/go v1.2.7/go.mod h1:nF9osbDWLy6bDVv/Rtoh6QgnvNDpmCalQV5urGCCS6
 github.com/ugorji/go/codec v1.2.7/go.mod h1:WGN1fab3R1fzQlVQTkfxVtIBhWDRqOviHU95kRgeqEY=
 github.com/ugorji/go/codec v1.2.11 h1:BMaWp1Bb6fHwEtbplGBGJ498wD+LKlNSl25MjdZY4dU=
 github.com/ugorji/go/codec v1.2.11/go.mod h1:UNopzCgEMSXjBc6AOMqYvWC1ktqTAfzJZUZgYf6w6lg=
+github.com/yuin/goldmark v1.4.15/go.mod h1:6yULJ656Px+3vBD8DxQVa3kxgyrAnzto9xy5taEt/CY=
 github.com/yuin/goldmark v1.5.4 h1:2uY/xC0roWy8IBEGLgB1ywIoEJFGmRrX21YQcvGZzjU=
 github.com/yuin/goldmark v1.5.4/go.mod h1:6yULJ656Px+3vBD8DxQVa3kxgyrAnzto9xy5taEt/CY=
+github.com/yuin/goldmark-highlighting/v2 v2.0.0-20220924101305-151362477c87 h1:Py16JEzkSdKAtEFJjiaYLYBOWGXc1r/xHj/Q/5lA37k=
+github.com/yuin/goldmark-highlighting/v2 v2.0.0-20220924101305-151362477c87/go.mod h1:ovIvrum6DQJA4QsJSovrkC4saKHQVs7TvcaeO8AIl5I=
 golang.org/x/arch v0.0.0-20210923205945-b76863e36670/go.mod h1:5om86z9Hs0C8fWVUuoMHwpExlXzs5Tkyp9hOrfG7pp8=
 golang.org/x/arch v0.3.0 h1:02VY4/ZcO/gBOH6PUaoiptASxtXU10jazRCP865E97k=
 golang.org/x/arch v0.3.0/go.mod h1:5om86z9Hs0C8fWVUuoMHwpExlXzs5Tkyp9hOrfG7pp8=

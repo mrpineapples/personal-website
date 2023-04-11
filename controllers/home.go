@@ -1,4 +1,4 @@
-package routes
+package controllers
 
 import (
 	"net/http"
@@ -6,9 +6,9 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func home(c *gin.Context) {
+func Home(c *gin.Context) {
 	c.HTML(http.StatusOK, "home", gin.H{
-		"pageTitle": "Michael's Site",
+		"PageTitle": "Michael's Site",
 	})
 
 }

@@ -4,7 +4,8 @@
     All My Articles 📝
   </h1>
   <ul>
-    {{ if .Articles }} {{ range .Articles }}
+    {{ if .Articles }}
+    {{ range .Articles }}
     <li class="flex leading-normal border-t py-8">
       <p class="mr-10">{{ .CreatedAt | formatAsDate }}</p>
       <div class="flex flex-col">
@@ -12,14 +13,35 @@
         {{ if .Description }}
         <p class="text-gray-400">{{ .Description }}</p>
         {{ end }}
-        <a class="mt-4 hover:text-blue-500" href="/articles/{{ .Slug }}">Read More</a>
+        <a class="mt-4 hover:text-blue-500" href="/articles/{{.Slug}}">Read More</a>
+        {{ if $.IsAdmin }}
+        <div class="flex mt-4">
+          <a class="mr-4 hover:text-blue-500" href="/admin/articles/{{.Slug}}/edit">Edit</a>
+          <form data-article-id="{{.ID}}" action="/articles/{{.ID}}?_method=DELETE" method="post">
+            <button class="text-red-500" type="submit">Delete</button>
+          </form>
+        </div>
+        {{ end }}
       </div>
     </li>
-    {{ end }} {{ else }}
-    <li class="leading-normal text-2xl mb-8">
-      No articles exist, how sad 😢
-    </li>
+    {{ end }}
+    {{ else }}
+    <li class="leading-normal text-2xl mb-8">No articles exist, how sad 😢</li>
     {{ end }}
   </ul>
 </div>
+
+{{ if .IsAdmin }}
+<script>
+  document.addEventListener("submit", (e) => {
+    if (!confirm("Are you sure you want to delete this article?")) {
+      e.preventDefault()
+      return
+    }
+
+    const { articleId } = e.target.dataset
+    localStorage.removeItem(`smde_edit-article-${articleId}`)
+  })
+</script>
+{{ end }}
 {{ end }}

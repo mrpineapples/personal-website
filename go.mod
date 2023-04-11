@@ -3,6 +3,7 @@ module github.com/mrpineapples/personal-website
 go 1.19
 
 require (
+	github.com/alecthomas/chroma/v2 v2.2.0
 	github.com/gin-contrib/multitemplate v0.0.0-20230212012517-45920c92c271
 	github.com/gin-gonic/gin v1.9.0
 	github.com/gosimple/slug v1.13.1
@@ -13,6 +14,7 @@ require (
 require (
 	github.com/bytedance/sonic v1.8.7 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20221115062448-fe3a3abad311 // indirect
+	github.com/dlclark/regexp2 v1.7.0 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
 	github.com/go-playground/locales v0.14.1 // indirect
 	github.com/go-playground/universal-translator v0.18.1 // indirect
@@ -31,6 +33,7 @@ require (
 	github.com/pelletier/go-toml/v2 v2.0.7 // indirect
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/ugorji/go/codec v1.2.11 // indirect
+	github.com/yuin/goldmark-highlighting/v2 v2.0.0-20220924101305-151362477c87
 	golang.org/x/arch v0.3.0 // indirect
 	golang.org/x/crypto v0.7.0 // indirect
 	golang.org/x/net v0.8.0 // indirect

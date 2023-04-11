@@ -1,19 +1,19 @@
 {{ define "article-form-fields" }}
 <div class="flex flex-col mb-4">
-  <label class="mb-4" for="title">Title</label>
+  <label class="mb-1" for="title">Title</label>
   <input required type="text" name="title" id="title" value="{{ .Article.Title }}"></input>
 </div>
 <div class="flex flex-col mb-4">
-  <label class="mb-4" for="description">Description</label>
-  <input type="text" name="description" id="description" value="{{ .Article.Description }}"></input>
+  <label class="mb-1" for="description">Description</label>
+  <textarea name="description" id="description">{{ .Article.Description }}</textarea>
 </div>
 <div class="flex flex-col mb-4">
-  <label class="mb-4" for="markdown">Markdown</label>
+  <label class="mb-1" for="markdown">Markdown</label>
   <div class="prose max-w-none">
     <textarea required name="markdown" id="markdown"></textarea>
   </div>
 </div>
 
-<a href="/articles{{if .Article.Slug}}/{{.Article.Slug}}{{end}}" class="btn btn-secondary">Cancel</a>
+<a id="cancel-edit" href="/admin/articles">Cancel</a>
 <button type="submit">Save</button>
 {{ end }}

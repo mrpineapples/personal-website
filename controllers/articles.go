@@ -28,7 +28,7 @@ func GetArticle(c *gin.Context) {
 	err := row.Scan(&article.Title, &article.Description, &article.Markdown, &article.CreatedAt, &article.UpdatedAt)
 	if err != nil {
 		if err == pgx.ErrNoRows {
-			fmt.Println("No rows were returned!", slug)
+			fmt.Println("No rows were returned for the following slug:", slug)
 		}
 		panic(err)
 	}
@@ -39,7 +39,7 @@ func GetArticle(c *gin.Context) {
 	}
 
 	c.HTML(http.StatusOK, "article", gin.H{
-		"pageTitle": "Michael's Site | " + article.Title,
+		"PageTitle": "Michael's Site | " + article.Title,
 		"Article":   article,
 		"Content":   template.HTML(articleBuf.String()),
 	})
@@ -73,7 +73,7 @@ func GetArticles(c *gin.Context) {
 	}
 
 	c.HTML(http.StatusOK, "articles", gin.H{
-		"pageTitle": "Michael's Site | Articles",
+		"PageTitle": "Michael's Site | Articles",
 		"Articles":  articles,
 	})
 }
@@ -81,7 +81,7 @@ func GetArticles(c *gin.Context) {
 // NewArticle renders the new article view
 func NewArticle(c *gin.Context) {
 	c.HTML(http.StatusOK, "new-article", gin.H{
-		"pageTitle": "Michael's Site Admin | Create An Article",
+		"PageTitle": "Michael's Site Admin | Create An Article",
 	})
 }
 

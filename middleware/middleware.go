@@ -66,6 +66,7 @@ func BasicAuth() gin.HandlerFunc {
 			// afterwards, so that none of the code below is run.
 			if usernameMatch && passwordMatch {
 				c.Next()
+				return
 			}
 		}
 
