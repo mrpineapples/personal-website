@@ -8,6 +8,6 @@ import (
 
 func About(c *gin.Context) {
 	c.HTML(http.StatusOK, "about", gin.H{
-		"PageTitle": "Michael's Site | About",
+		"PageTitle": "Michael Miranda | About",
 	})
 }

@@ -1,6 +1,8 @@
 package routes
 
 import (
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 	"github.com/mrpineapples/personal-website/controllers"
 	"github.com/mrpineapples/personal-website/middleware"
@@ -16,8 +18,12 @@ func InitializeRoutes(r *gin.Engine) {
 	r.GET("/articles", controllers.GetArticles)
 	r.GET("/articles/:slug", controllers.GetArticle)
 	r.POST("/articles", controllers.CreateArticle)
-	r.PATCH("/articles/:id", controllers.UpdateArticle)
+	r.PUT("/articles/:id", controllers.UpdateArticle)
 	r.DELETE("/articles/:id", controllers.DeleteArticle)
+	// redirect to admin route for ease of use!
+	r.GET("/articles/:slug/edit", func(c *gin.Context) {
+		c.Redirect(http.StatusSeeOther, "/admin/articles/"+c.Param("slug")+"/edit")
+	})
 
 	// admin routes
 	admin := r.Group("/admin", middleware.BasicAuth())

@@ -7,8 +7,6 @@ import (
 )
 
 func Home(c *gin.Context) {
-	c.HTML(http.StatusOK, "home", gin.H{
-		"PageTitle": "Michael's Site",
-	})
+	c.HTML(http.StatusOK, "home", gin.H{})
 
 }

@@ -5,7 +5,7 @@
 *.prof
 *.out
 
-public/
+public/styles
 bin/
 tmp/
 

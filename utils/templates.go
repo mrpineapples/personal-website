@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"fmt"
 	"html/template"
 	"path/filepath"
 	"strings"
@@ -15,7 +16,7 @@ func LoadTemplates() multitemplate.Renderer {
 
 	funcMap := template.FuncMap{
 		"formatAsDate": func(t time.Time) string {
-			return t.Format("January 2, 2006")
+			return t.Format("Jan 2, 2006")
 		},
 	}
 
@@ -42,6 +43,7 @@ func LoadTemplates() multitemplate.Renderer {
 		files := append(assets, view)
 		fileName := filepath.Base(view)
 		templateName := strings.TrimSuffix(fileName, ".html")
+		fmt.Println("files", files)
 		r.AddFromFilesFuncs(templateName, funcMap, files...)
 	}
 	return r

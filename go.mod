@@ -3,15 +3,18 @@ module github.com/mrpineapples/personal-website
 go 1.19
 
 require (
-	github.com/alecthomas/chroma/v2 v2.2.0
 	github.com/gin-contrib/multitemplate v0.0.0-20230212012517-45920c92c271
 	github.com/gin-gonic/gin v1.9.0
 	github.com/gosimple/slug v1.13.1
 	github.com/jackc/pgx/v5 v5.3.1
+	github.com/tdewolff/minify/v2 v2.12.5
 	github.com/yuin/goldmark v1.5.4
 )
 
+require github.com/tdewolff/parse/v2 v2.6.5 // indirect
+
 require (
+	github.com/alecthomas/chroma/v2 v2.2.0 // indirect
 	github.com/bytedance/sonic v1.8.7 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20221115062448-fe3a3abad311 // indirect
 	github.com/dlclark/regexp2 v1.7.0 // indirect

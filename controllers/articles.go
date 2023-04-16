@@ -39,7 +39,7 @@ func GetArticle(c *gin.Context) {
 	}
 
 	c.HTML(http.StatusOK, "article", gin.H{
-		"PageTitle": "Michael's Site | " + article.Title,
+		"PageTitle": article.Title,
 		"Article":   article,
 		"Content":   template.HTML(articleBuf.String()),
 	})
@@ -73,7 +73,7 @@ func GetArticles(c *gin.Context) {
 	}
 
 	c.HTML(http.StatusOK, "articles", gin.H{
-		"PageTitle": "Michael's Site | Articles",
+		"PageTitle": "Michael Miranda | Articles",
 		"Articles":  articles,
 	})
 }
@@ -81,7 +81,7 @@ func GetArticles(c *gin.Context) {
 // NewArticle renders the new article view
 func NewArticle(c *gin.Context) {
 	c.HTML(http.StatusOK, "new-article", gin.H{
-		"PageTitle": "Michael's Site Admin | Create An Article",
+		"PageTitle": "Admin | Create An Article",
 	})
 }
 
@@ -116,31 +116,6 @@ func CreateArticle(c *gin.Context) {
 		panic(err)
 	}
 	c.Redirect(http.StatusSeeOther, "/articles/"+article.Slug)
-}
-
-// EditArticle renders the edit article view
-func EditArticle(c *gin.Context) {
-	sqlStatement := `
-		SELECT id, title, description, markdown, created_at, updated_at
-		FROM articles
-		WHERE slug = $1;
-	`
-	slug := c.Param("slug")
-	row := models.Pool.QueryRow(models.DBContext, sqlStatement, slug)
-
-	var article models.Article
-	err := row.Scan(&article.ID, &article.Title, &article.Description, &article.Markdown, &article.CreatedAt, &article.UpdatedAt)
-	if err != nil {
-		if err == pgx.ErrNoRows {
-			fmt.Println("No rows were returned!", slug)
-		}
-		panic(err)
-	}
-	article.Slug = slug
-
-	c.HTML(http.StatusOK, "edit-article", gin.H{
-		"Article": article,
-	})
 }
 
 func UpdateArticle(c *gin.Context) {
