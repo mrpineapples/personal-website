@@ -3,7 +3,7 @@
 {{ end }}
 
 {{ define "yield" }}
-<div class="max-w-3xl my-12 mx-auto">
+<div class="max-w-2xl px-5 my-12 mx-auto md:px-0">
   <div class="mb-10">
     <h1 class="mb-6 text-5xl font-semibold leading-none text-gray-800">
       {{- .Article.Title -}}
@@ -13,12 +13,15 @@
       {{- .Article.Description -}}
     </h2>
     {{ end }}
-    <time class="block mt-6 text-gray-400 text-sm" datetime="{{.Article.CreatedAt}}">
-      {{- .Article.CreatedAt | formatAsDate -}}
-    </time>
+    <div class="flex items-baseline mt-6 text-gray-400 text-sm">
+      <time class="block" datetime="{{.Article.CreatedAt}}">
+        {{- .Article.CreatedAt | formatAsDate -}}
+      </time>
+      <p class="ml-4">{{ .Article.Markdown | getReadingTime }}</p>
+    </div>
   </div>
-  <div class="max-w-none prose prose-blue prose-pre:pb-0 prose-code:max-h-[500px] prose-code:font-fira">
-    {{ .Content }}
+  <div class="max-w-none md:text-lg prose prose-blue prose-pre:pb-0 prose-code:max-h-[500px] prose-code:font-fira">
+    {{- .Content -}}
   </div>
 </div>
 {{ end }}

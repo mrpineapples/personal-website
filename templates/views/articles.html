@@ -13,7 +13,7 @@
         {{ if .Description }}
         <p class="text-gray-400">{{ .Description }}</p>
         {{ end }}
-        <a class="mt-4 hover:text-blue-500" href="/articles/{{.Slug}}">Read More</a>
+        <a class="mt-4 hover:text-blue-500" href="/articles/{{.Slug}}">Read More ({{ .Markdown | getReadingTime }})</a>
         {{ if $.IsAdmin }}
         <div class="flex mt-4">
           <a class="mr-4 hover:text-blue-500" href="/admin/articles/{{.Slug}}/edit">Edit</a>

@@ -3,12 +3,33 @@ package utils
 import (
 	"fmt"
 	"html/template"
+	"math"
 	"path/filepath"
+	"regexp"
 	"strings"
 	"time"
 
 	"github.com/gin-contrib/multitemplate"
 )
+
+// getReadingTime calculates the amount of time it should take to read the
+// given text and returns it in a formatted string (example: "5 min read")
+func getReadingTime(text string) string {
+	wordsPerMin := 250
+	// Match one or more word characters
+	reg := regexp.MustCompile(`\w+`)
+	// Find all matches in the text
+	matches := reg.FindAllString(text, -1)
+	count := len(matches)
+	time := math.Ceil(float64((count / wordsPerMin)))
+
+	s := "<1 min read"
+	if time > 0 {
+		s = fmt.Sprintf("%v min read", time)
+	}
+
+	return s
+}
 
 func LoadTemplates() multitemplate.Renderer {
 	templatesDir := "./templates/"
@@ -17,6 +38,9 @@ func LoadTemplates() multitemplate.Renderer {
 	funcMap := template.FuncMap{
 		"formatAsDate": func(t time.Time) string {
 			return t.Format("Jan 2, 2006")
+		},
+		"getReadingTime": func(text string) string {
+			return getReadingTime(text)
 		},
 	}
 
