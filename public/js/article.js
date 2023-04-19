@@ -6,7 +6,8 @@ blocks.forEach((block) => {
   const header = document.createElement("div");
   header.className = "font-inter flex items-baseline mb-4 select-none";
   const languageHeading = document.createElement("p");
-  languageHeading.className = "text-lg m-0 px-4 pb-1 border-b border-[#ff79c6]";
+  languageHeading.className =
+    "text-base m-0 px-4 pb-1 border-b border-[#ff79c6] md:text-lg";
   languageHeading.innerText = lang || "Text";
   header.append(languageHeading);
   block.tabIndex = "-1";
@@ -21,6 +22,8 @@ blocks.forEach((block) => {
     });
 
     header.append(button);
+  } else {
+    alert("navigator does not have clipboard");
   }
 });
 

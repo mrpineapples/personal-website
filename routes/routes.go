@@ -24,6 +24,9 @@ func InitializeRoutes(r *gin.Engine) {
 	r.GET("/articles/:slug/edit", func(c *gin.Context) {
 		c.Redirect(http.StatusSeeOther, "/admin/articles/"+c.Param("slug")+"/edit")
 	})
+	r.GET("/articles/new", func(c *gin.Context) {
+		c.Redirect(http.StatusSeeOther, "/admin/articles/new")
+	})
 
 	// admin routes
 	admin := r.Group("/admin", middleware.BasicAuth())

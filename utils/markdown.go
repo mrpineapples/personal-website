@@ -25,6 +25,7 @@ var langMap = map[string]string{
 	"js":         "JavaScript",
 	"json":       "JSON",
 	"jsx":        "JavaScript",
+	"md":         "Markdown",
 	"sql":        "SQL",
 	"ts":         "TypeScript",
 	"tsx":        "TypeScript",

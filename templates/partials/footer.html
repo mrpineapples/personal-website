@@ -1,6 +1,6 @@
 {{ define "footer" }}
-<footer class="w-full bg-gray-800 px-5 py-8 mt-0 md:px-0">
-  <div class="container mx-auto flex gap-4 flex-wrap md:flex-nowrap">
+<footer class="w-full bg-gray-800 px-5 py-8 mt-0">
+  <div class="container mx-auto flex gap-y-8 flex-wrap md:flex-nowrap">
     <div class="flex flex-col w-full md:w-1/3 md:mr-auto">
       <h3 class="text-white text-lg font-medium">Michael Miranda</h3>
       <p class="mt-2 text-gray-400 text-lg">
@@ -8,29 +8,31 @@
         <a href="https://twitter.com/mrpineapples24" class="text-gray-300 hover:text-white">Twitter</a>!
       </p>
     </div>
-    <div class="flex flex-col w-full md:w-1/4">
-      <h3 class="text-white text-lg font-medium">Follow</h3>
-      <ul class="mt-2 flex flex-col">
-        <li>
-          <a href="https://github.com/mrpineapples" class="block text-gray-300 hover:text-white mb-2">Github</a>
-        </li>
-        <li>
-          <a href="https://www.linkedin.com/in/michaelmiranda18/"
-            class="block text-gray-300 hover:text-white mb-2">LinkedIn</a>
-        </li>
-        <li>
-          <a href="https://twitter.com/mrpineapples24" class="block text-gray-300 hover:text-white mb-2">Twitter</a>
-        </li>
-      </ul>
-    </div>
-    <div class="flex flex-col w-full md:w-1/4">
-      <h3 class="text-white text-lg font-medium">Links</h3>
-      <ul class="mt-2 flex flex-col">
-        <li><a href="/" class="block text-gray-300 hover:text-white mb-2">Home</a></li>
-        <li><a href="/articles" class="block text-gray-300 hover:text-white mb-2">Blog</a></li>
-        <li><a href="/about" class="block text-gray-300 hover:text-white mb-2">About</a></li>
-        <li><a href="/contact" class="block text-gray-300 hover:text-white mb-2">Contact</a></li>
-      </ul>
+    <div class="flex justify-between w-full md:w-1/2">
+      <div class="flex flex-col w-full">
+        <h3 class="text-white text-lg font-medium">Follow</h3>
+        <ul class="mt-2 flex flex-col">
+          <li>
+            <a href="https://github.com/mrpineapples" class="block text-gray-300 hover:text-white mb-2">Github</a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/michaelmiranda18/"
+              class="block text-gray-300 hover:text-white mb-2">LinkedIn</a>
+          </li>
+          <li>
+            <a href="https://twitter.com/mrpineapples24" class="block text-gray-300 hover:text-white mb-2">Twitter</a>
+          </li>
+        </ul>
+      </div>
+      <div class="flex flex-col w-full">
+        <h3 class="text-white text-lg font-medium">Links</h3>
+        <ul class="mt-2 flex flex-col">
+          <li><a href="/" class="block text-gray-300 hover:text-white mb-2">Home</a></li>
+          <li><a href="/articles" class="block text-gray-300 hover:text-white mb-2">Blog</a></li>
+          <li><a href="/about" class="block text-gray-300 hover:text-white mb-2">About</a></li>
+          <li><a href="/contact" class="block text-gray-300 hover:text-white mb-2">Contact</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </footer>

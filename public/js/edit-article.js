@@ -1,5 +1,4 @@
 const { id, markdown } = window._data;
-console.log("window._data", window._data);
 
 const easyMDE = new EasyMDE({
   autosave: {
