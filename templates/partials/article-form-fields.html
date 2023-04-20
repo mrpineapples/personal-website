@@ -1,11 +1,13 @@
 {{ define "article-form-fields" }}
 <div class="flex flex-col mb-4">
   <label class="mb-1" for="title">Title</label>
-  <input required type="text" name="title" id="title" value="{{ .Article.Title }}"></input>
+  <input class="dark:bg-gray-700 dark:text-white rounded" required type="text" name="title" id="title"
+    value="{{ .Article.Title }}"></input>
 </div>
 <div class="flex flex-col mb-4">
   <label class="mb-1" for="description">Description</label>
-  <textarea name="description" id="description">{{ .Article.Description }}</textarea>
+  <textarea class="dark:bg-gray-700 dark:text-white rounded" name="description"
+    id="description">{{ .Article.Description }}</textarea>
 </div>
 <div class="flex flex-col mb-4">
   <label class="mb-1" for="markdown">Markdown</label>

@@ -22,8 +22,6 @@ blocks.forEach((block) => {
     });
 
     header.append(button);
-  } else {
-    alert("navigator does not have clipboard");
   }
 });
 
