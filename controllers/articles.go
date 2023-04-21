@@ -30,7 +30,7 @@ func GetArticle(c *gin.Context) {
 		if err == pgx.ErrNoRows {
 			fmt.Println("No rows were returned for the following slug:", slug)
 		}
-		panic(err)
+		utils.RenderNotFound(c)
 	}
 
 	var articleBuf bytes.Buffer
