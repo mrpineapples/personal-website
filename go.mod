@@ -7,11 +7,8 @@ require (
 	github.com/gin-gonic/gin v1.9.0
 	github.com/gosimple/slug v1.13.1
 	github.com/jackc/pgx/v5 v5.3.1
-	github.com/tdewolff/minify/v2 v2.12.5
 	github.com/yuin/goldmark v1.5.4
 )
-
-require github.com/tdewolff/parse/v2 v2.6.5 // indirect
 
 require (
 	github.com/alecthomas/chroma/v2 v2.2.0 // indirect

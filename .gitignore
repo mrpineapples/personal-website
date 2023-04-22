@@ -4,6 +4,7 @@
 *.test
 *.prof
 *.out
+.DS_Store
 
 public/styles
 bin/
