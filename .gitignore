@@ -4,8 +4,10 @@
 *.test
 *.prof
 *.out
+.env
+.DS_Store
 
-public/
+public/styles
 bin/
 tmp/
 

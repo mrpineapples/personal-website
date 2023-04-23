@@ -1,4 +1,4 @@
-package routes
+package controllers
 
 import (
 	"net/http"
@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func contact(c *gin.Context) {
+func Contact(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"contact": gin.H{
 			"github":   "https://github.com/mrpineapples",

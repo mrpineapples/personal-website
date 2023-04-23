@@ -1,0 +1,23 @@
+<!-- Head tags -->
+{{ define "head-tags" }}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
+{{ end }}
+
+<!-- Content -->
+{{ define "yield" }}
+<div class="container mx-auto">
+  <div>
+    <h1 class="my-4 text-5xl text-gray-900 dark:text-white font-semibold leading-tight">
+      Create An Article
+    </h1>
+    <form action="/articles" method="post">
+      {{ template "article-form-fields" }}
+    </form>
+  </div>
+</div>
+{{ end }}
+
+{{ define "scripts" }}
+<script type="module" src="/public/js/new-article.js"></script>
+{{ end }}

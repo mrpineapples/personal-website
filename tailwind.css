@@ -1,3 +1,48 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600&display=swap");
+
+pre code {
+  @apply block !pb-4 !text-sm !overflow-scroll;
+}
+
+.CodeMirror,
+.editor-preview,
+.editor-toolbar {
+  @apply !border-gray-500;
+}
+
+@media (prefers-color-scheme: dark) {
+  .EasyMDEContainer {
+    @apply !bg-gray-700;
+    caret-color: red !important;
+  }
+
+  .CodeMirror,
+  .editor-preview,
+  .editor-toolbar {
+    @apply !text-white !bg-gray-700;
+  }
+
+  .editor-statusbar {
+    @apply !bg-gray-800;
+  }
+
+  .cm-s-easymde .CodeMirror-cursor {
+    @apply !border-white;
+  }
+
+  .editor-toolbar button i {
+    @apply !text-white;
+  }
+
+  .editor-toolbar button.active,
+  .editor-toolbar button:hover {
+    @apply !bg-blue-500;
+  }
+
+  .editor-preview pre {
+    @apply !bg-gray-700;
+  }
+}

@@ -1,17 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>{{ .pageTitle}}</title>
-    <link rel="stylesheet" href="/public/styles/tailwind.css" />
-  </head>
-  <body class="bg-gray-100 font-sans leading-normal tracking-normal">
-    <!-- Navbar -->
-    {{ template "header" . }}
 
-    <!-- Content -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>{{ or .PageTitle "Michael Miranda" }}</title>
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>{{or .FaviconEmoji `🚀`}}</text></svg>"
+    type="image/svg+xml" />
+  <link rel="stylesheet" href="/public/styles/tailwind.css" />
+  {{ block "head-tags" . }}{{end}}
+  <script type="module" src="/public/js/header.js" defer></script>
+</head>
+
+<body class="bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-inter leading-normal tracking-normal">
+  <!-- Header -->
+  {{ template "header" . }}
+
+  <!-- Content -->
+  <main class="px-5 py-10">
     {{ template "yield" . }}
-  </body>
+  </main>
+
+  <!-- Footer -->
+  {{ template "footer" . }}
+
+  <!-- Scripts -->
+  {{ block "scripts" . }}{{end}}
+</body>
+
 </html>
