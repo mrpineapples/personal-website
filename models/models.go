@@ -8,18 +8,17 @@ import (
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
-const (
-	host   = "localhost"
-	port   = 5432
-	user   = "postgres"
-	dbname = "michaelsite_dev"
-)
-
 var Pool *pgxpool.Pool
 var DBContext = context.Background()
 
 func InitDB() {
-	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+"dbname=%s sslmode=disable", host, port, user, dbname)
+	psqlInfo := fmt.Sprintf(
+		"host=%s port=%s user=%s dbname=%s sslmode=disable",
+		os.Getenv("DB_HOST"),
+		os.Getenv("DB_PORT"),
+		os.Getenv("DB_USER"),
+		os.Getenv("DB_NAME"),
+	)
 	ctx := context.Background()
 
 	pool, err := pgxpool.New(ctx, psqlInfo)

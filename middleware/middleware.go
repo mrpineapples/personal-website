@@ -4,6 +4,7 @@ import (
 	"crypto/sha256"
 	"crypto/subtle"
 	"net/http"
+	"os"
 
 	"github.com/gin-gonic/gin"
 )
@@ -48,8 +49,8 @@ func BasicAuth() gin.HandlerFunc {
 			usernameHash := sha256.Sum256([]byte(username))
 			passwordHash := sha256.Sum256([]byte(password))
 			// TODO: Grab these values from env
-			expectedUsernameHash := sha256.Sum256([]byte("admin"))
-			expectedPasswordHash := sha256.Sum256([]byte("password"))
+			expectedUsernameHash := sha256.Sum256([]byte(os.Getenv("AUTH_USERNAME")))
+			expectedPasswordHash := sha256.Sum256([]byte(os.Getenv("AUTH_PASSWORD")))
 
 			// Use the subtle.ConstantTimeCompare() function to check if
 			// the provided username and password hashes equal the

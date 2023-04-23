@@ -1,6 +1,8 @@
 package main
 
 import (
+	"os"
+
 	"github.com/gin-gonic/gin"
 	"github.com/mrpineapples/personal-website/middleware"
 	"github.com/mrpineapples/personal-website/models"
@@ -8,14 +10,13 @@ import (
 	"github.com/mrpineapples/personal-website/utils"
 )
 
-const (
-	host   = "localhost"
-	port   = 5432
-	user   = "postgres"
-	dbname = "michaelsite_dev"
-)
-
 func main() {
+	utils.LoadEnv()
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
 	r := gin.Default()
 	r.Use(middleware.MethodOverride(r))
 	r.Static("/public", "./public")
@@ -26,7 +27,7 @@ func main() {
 	defer models.Pool.Close()
 
 	// start the server on port 8080
-	if err := r.Run(":8080"); err != nil {
+	if err := r.Run(":" + port); err != nil {
 		// handle the error if the server fails to start
 		panic(err)
 	}
