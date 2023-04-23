@@ -1,5 +1,9 @@
 version: "3"
 
+dotenv: [".env"]
+vars:
+  POSTGRES_URL: postgres://$DB_USER:$DB_PASSWORD@$DB_HOST:$DB_PORT/$DB_NAME?sslmode=disable
+
 tasks:
   get-air:
     cmds:
@@ -18,7 +22,22 @@ tasks:
             mv tailwindcss-macos-x64 bin/tailwindcss
           fi
         silent: true
+  get-migrate:
+    cmds:
+      - cmd: |
+          if ! type ./bin/migrate &> /dev/null; then
+            curl -sL https://github.com/golang-migrate/migrate/releases/download/v4.15.2/migrate.darwin-amd64.tar.gz | tar xvz - migrate
+            mv migrate bin/migrate
+          fi
   dev:
     deps: [get-air, get-tailwind]
     cmds:
       - ./bin/air & ./bin/tailwindcss -i tailwind.css -o public/styles/tailwind.css --watch
+  migrate_up:
+    deps: [get-migrate]
+    cmds:
+      - ./bin/migrate -database {{.POSTGRES_URL}} -path database/migrations up
+  migrate_down:
+    deps: [get-migrate]
+    cmds:
+      - ./bin/migrate -database {{.POSTGRES_URL}} -path database/migrations down

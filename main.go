@@ -18,6 +18,7 @@ func main() {
 	}
 
 	r := gin.Default()
+	r.SetTrustedProxies([]string{"fly.io", "fly.dev"})
 	r.Use(middleware.MethodOverride(r))
 	r.Static("/public", "./public")
 	r.HTMLRender = utils.LoadTemplates()
