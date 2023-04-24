@@ -1,0 +1,16 @@
+# flyctl launch added from .gitignore
+**/*.o
+**/*.a
+**/*.so
+**/*.test
+**/*.prof
+**/*.out
+**/.env
+**/.DS_Store
+
+**/bin
+**/tmp
+
+# build output
+**/air
+fly.toml

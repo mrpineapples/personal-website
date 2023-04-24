@@ -1,6 +1,10 @@
 package main
 
 import (
+	"embed"
+	"io/fs"
+	"log"
+	"net/http"
 	"os"
 
 	"github.com/gin-gonic/gin"
@@ -10,24 +14,34 @@ import (
 	"github.com/mrpineapples/personal-website/utils"
 )
 
+var (
+	//go:embed templates
+	templates embed.FS
+	//go:embed public
+	staticFiles embed.FS
+)
+
 func main() {
+	utils.TemplateFS = templates
 	utils.LoadEnv()
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "8080"
+	staticFS, err := fs.Sub(staticFiles, "public")
+	if err != nil {
+		log.Fatal(err)
 	}
 
 	r := gin.Default()
-	r.SetTrustedProxies([]string{"fly.io", "fly.dev"})
 	r.Use(middleware.MethodOverride(r))
-	r.Static("/public", "./public")
+	r.StaticFS("/public", http.FS(staticFS))
 	r.HTMLRender = utils.LoadTemplates()
 	routes.InitializeRoutes(r)
 
 	models.InitDB()
 	defer models.Pool.Close()
 
-	// start the server on port 8080
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
 	if err := r.Run(":" + port); err != nil {
 		// handle the error if the server fails to start
 		panic(err)
