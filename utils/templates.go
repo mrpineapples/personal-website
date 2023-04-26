@@ -1,10 +1,8 @@
 package utils
 
 import (
-	"embed"
 	"fmt"
 	"html/template"
-	"io/fs"
 	"math"
 	"path/filepath"
 	"regexp"
@@ -13,8 +11,6 @@ import (
 
 	"github.com/gin-contrib/multitemplate"
 )
-
-var TemplateFS embed.FS
 
 // getReadingTime calculates the amount of time it should take to read the
 // given text and returns it in a formatted string (example: "5 min read")
@@ -48,17 +44,17 @@ func LoadTemplates() multitemplate.Renderer {
 		},
 	}
 
-	layouts, err := fs.Glob(TemplateFS, templatesDir+"layouts/*.html")
+	layouts, err := filepath.Glob(templatesDir + "layouts/*.html")
 	if err != nil {
 		panic(err.Error())
 	}
 
-	partials, err := fs.Glob(TemplateFS, templatesDir+"partials/*.html")
+	partials, err := filepath.Glob(templatesDir + "partials/*.html")
 	if err != nil {
 		panic(err.Error())
 	}
 
-	views, err := fs.Glob(TemplateFS, templatesDir+"views/*.html")
+	views, err := filepath.Glob(templatesDir + "views/*.html")
 	if err != nil {
 		panic(err.Error())
 	}
@@ -69,18 +65,9 @@ func LoadTemplates() multitemplate.Renderer {
 		assets = append(assets, layouts...)
 		assets = append(assets, partials...)
 		files := append(assets, view)
-
-		// should be same name as the root file so that we don't get "incomplete" template error
-		tname := filepath.Base(files[0])
-		t := template.Must(template.New(tname).Funcs(funcMap).ParseFS(
-			TemplateFS,
-			files...,
-		))
-
 		fileName := filepath.Base(view)
 		templateName := strings.TrimSuffix(fileName, ".html")
-		r.Add(templateName, t)
+		r.AddFromFilesFuncs(templateName, funcMap, files...)
 	}
-
 	return r
 }

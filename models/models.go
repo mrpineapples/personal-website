@@ -12,17 +12,8 @@ var Pool *pgxpool.Pool
 var DBContext = context.Background()
 
 func InitDB() {
-	psqlInfo := fmt.Sprintf(
-		"host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
-		os.Getenv("DB_HOST"),
-		os.Getenv("DB_PORT"),
-		os.Getenv("DB_USER"),
-		os.Getenv("DB_PASSWORD"),
-		os.Getenv("DB_NAME"),
-	)
 	ctx := context.Background()
-
-	pool, err := pgxpool.New(ctx, psqlInfo)
+	pool, err := pgxpool.New(ctx, os.Getenv("DATABASE_URL"))
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
 		os.Exit(1)
@@ -33,5 +24,5 @@ func InitDB() {
 		panic(err)
 	}
 	Pool = pool
-	fmt.Println("Models successfully connected to postgres!")
+	fmt.Println("Database connection successful!")
 }

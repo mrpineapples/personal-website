@@ -32,7 +32,7 @@ tasks:
   dev:
     deps: [get-air, get-tailwind]
     cmds:
-      - ./bin/air & ./bin/tailwindcss -i tailwind.css -o public/styles/tailwind.css --watch
+      - ./bin/air & ./bin/tailwindcss -i tailwind.css -o public/styles/site.css --watch
   migrate_up:
     deps: [get-migrate]
     cmds:

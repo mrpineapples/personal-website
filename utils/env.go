@@ -8,9 +8,15 @@ import (
 )
 
 func LoadEnv() {
-	envFile, err := os.Open(".env")
+	isProd := os.Getenv("GIN_MODE") == "release"
+	envFilename := "./.env.dev"
+	if isProd {
+		envFilename = "./.env.production"
+	}
+
+	envFile, err := os.Open(envFilename)
 	if err != nil {
-		fmt.Println("Error opening .env file:", err)
+		fmt.Println("Could not open env file:", err)
 		return
 	}
 	defer envFile.Close()
@@ -19,9 +25,11 @@ func LoadEnv() {
 	for scanner.Scan() {
 		line := scanner.Text()
 		if len(line) > 0 && line[0] != '#' {
-			parts := strings.Split(line, "=")
+			parts := strings.SplitN(line, "=", 2)
 			if len(parts) == 2 {
-				os.Setenv(parts[0], parts[1])
+				key := parts[0]
+				value := parts[1]
+				os.Setenv(key, value)
 			}
 		}
 	}

@@ -1,5 +1,5 @@
 {{ define "yield" }}
-<div class="max-w-4xl mx-auto">
+<div class="max-w-4xl mx-auto min-h-screen">
   <h1 class="mb-5 text-4xl text-gray-900 dark:text-white font-semibold leading-tight md:text-5xl">
     All My Articles 📝
   </h1>
@@ -14,7 +14,7 @@
         {{ if .Description }}
         <p class="mb-4 text-gray-500 dark:text-gray-400">{{ .Description }}</p>
         {{ end }}
-        <a class="text-blue-500 hover:text-blue-700" href="/articles/{{.Slug}}">
+        <a class="text-blue-500 hover:text-blue-700 max-w-max" href="/articles/{{.Slug}}">
           Read More ({{ .Markdown | getReadingTime }})
           <span aria-hidden="true">&#8594;</span></a>
         {{ if $.IsAdmin }}
