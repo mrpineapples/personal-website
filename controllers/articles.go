@@ -39,9 +39,10 @@ func GetArticle(c *gin.Context) {
 	}
 
 	c.HTML(http.StatusOK, "article", gin.H{
-		"PageTitle": article.Title,
-		"Article":   article,
-		"Content":   template.HTML(articleBuf.String()),
+		"PageTitle":       article.Title,
+		"PageDescription": article.Description,
+		"Article":         article,
+		"Content":         template.HTML(articleBuf.String()),
 	})
 }
 
@@ -73,8 +74,9 @@ func GetArticles(c *gin.Context) {
 	}
 
 	c.HTML(http.StatusOK, "articles", gin.H{
-		"PageTitle": "Michael Miranda | Articles",
-		"Articles":  articles,
+		"PageTitle":       "Michael Miranda | Articles",
+		"PageDescription": "All of Michael's articles",
+		"Articles":        articles,
 	})
 }
 
