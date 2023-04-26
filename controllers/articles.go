@@ -38,9 +38,14 @@ func GetArticle(c *gin.Context) {
 		panic(err)
 	}
 
+	pageDescription := article.Description
+	if pageDescription == "" {
+		pageDescription = "An article written by Michael"
+	}
+
 	c.HTML(http.StatusOK, "article", gin.H{
 		"PageTitle":       article.Title,
-		"PageDescription": article.Description,
+		"PageDescription": pageDescription,
 		"Article":         article,
 		"Content":         template.HTML(articleBuf.String()),
 	})
