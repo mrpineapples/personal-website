@@ -39,5 +39,4 @@ echo "  Server restarted successfully 🔁"
 echo "  Reloading Caddy server..."
 ssh root@blog.michaelmiranda.dev "systemctl reload caddy"
 echo "  Caddy reloaded successfully 🔁"
-
 echo "Release finished 🚀"
