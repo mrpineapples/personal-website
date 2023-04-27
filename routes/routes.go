@@ -16,24 +16,24 @@ func InitializeRoutes(r *gin.Engine) {
 	r.GET("/about", controllers.About)
 	r.GET("/contact", controllers.Contact)
 
-	// article public routes
-	r.GET("/articles", controllers.GetArticles)
-	r.GET("/articles/:slug", controllers.GetArticle)
+	// blog routes
+	r.GET("/blog", controllers.GetArticles)
+	r.GET("/blog/:slug", controllers.GetArticle)
 	r.POST("/articles", controllers.CreateArticle)
 	r.PUT("/articles/:id", controllers.UpdateArticle)
 	r.DELETE("/articles/:id", controllers.DeleteArticle)
 	// redirect to admin route for ease of use!
-	r.GET("/articles/:slug/edit", func(c *gin.Context) {
-		c.Redirect(http.StatusSeeOther, "/admin/articles/"+c.Param("slug")+"/edit")
+	r.GET("/blog/new", func(c *gin.Context) {
+		c.Redirect(http.StatusSeeOther, "/admin/blog/new")
 	})
-	r.GET("/articles/new", func(c *gin.Context) {
-		c.Redirect(http.StatusSeeOther, "/admin/articles/new")
+	r.GET("/blog/:slug/edit", func(c *gin.Context) {
+		c.Redirect(http.StatusSeeOther, "/admin/blog/"+c.Param("slug")+"/edit")
 	})
 
 	// admin routes
 	admin := r.Group("/admin", middleware.BasicAuth())
 	admin.GET("", controllers.Admin)
-	admin.GET("/articles", controllers.GetAdminArticles)
-	admin.GET("/articles/new", controllers.NewArticle)
-	admin.GET("/articles/:slug/edit", controllers.EditArticle)
+	admin.GET("/blog", controllers.GetAdminArticles)
+	admin.GET("/blog/new", controllers.NewArticle)
+	admin.GET("/blog/:slug/edit", controllers.EditArticle)
 }

@@ -14,12 +14,12 @@
         {{ if .Description }}
         <p class="mb-4 text-gray-500 dark:text-gray-400">{{ .Description }}</p>
         {{ end }}
-        <a class="text-blue-500 hover:text-blue-700 max-w-max" href="/articles/{{.Slug}}">
+        <a class="text-blue-500 hover:text-blue-700 max-w-max" href="/blog/{{.Slug}}">
           Read More ({{ .Markdown | getReadingTime }})
           <span aria-hidden="true">&#8594;</span></a>
         {{ if $.IsAdmin }}
         <div class="flex mt-4">
-          <a class="mr-4 hover:text-blue-500" href="/admin/articles/{{.Slug}}/edit">Edit</a>
+          <a class="mr-4 hover:text-blue-500" href="/admin/blog/{{.Slug}}/edit">Edit</a>
           <form data-article-id="{{.ID}}" action="/articles/{{.ID}}?_method=DELETE" method="post">
             <button class="text-red-500" type="submit">Delete</button>
           </form>

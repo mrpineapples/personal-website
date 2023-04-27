@@ -5,7 +5,7 @@
 {{ end }}
 <!-- Content -->
 {{ define "yield" }}
-<div class="container mx-auto">
+<div class="max-w-4xl mx-auto">
   <h1 class="my-4 text-5xl text-gray-900 dark:text-white font-semibold leading-tight">Edit This Article</h1>
   <form action="/articles/{{.Article.ID}}?_method=PUT" method="post">
     {{ template "article-form-fields" . }}
