@@ -9,9 +9,9 @@ import (
 
 func LoadEnv() {
 	isProd := os.Getenv("GIN_MODE") == "release"
-	envFilename := "./.env.dev"
+	envFilename := ".env.dev"
 	if isProd {
-		envFilename = "./.env.production"
+		envFilename = ".env.production"
 	}
 
 	envFile, err := os.Open(envFilename)

@@ -33,6 +33,12 @@ tasks:
     deps: [get-air, get-tailwind]
     cmds:
       - ./bin/air & ./bin/tailwindcss -i tailwind.css -o public/styles/site.css --watch
+  deploy:
+    cmds:
+      - ./scripts/release.sh
+  caddy:
+    cmds:
+      - ./scripts/caddy.sh
   migrate_up:
     deps: [get-migrate]
     cmds:
