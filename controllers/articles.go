@@ -122,7 +122,7 @@ func CreateArticle(c *gin.Context) {
 	if err != nil {
 		panic(err)
 	}
-	c.Redirect(http.StatusSeeOther, "/articles/"+article.Slug)
+	c.Redirect(http.StatusSeeOther, "/admin/blog")
 }
 
 func UpdateArticle(c *gin.Context) {
@@ -172,5 +172,5 @@ func DeleteArticle(c *gin.Context) {
 	} else if cmdTag.RowsAffected() != 1 {
 		panic(errors.New("No row found to delete"))
 	}
-	c.Redirect(http.StatusSeeOther, "/articles")
+	c.Redirect(http.StatusSeeOther, "/admin/blog")
 }

@@ -35,3 +35,22 @@ const copyCode = async (block, button) => {
     button.innerText = copyButtonLabel;
   }, 750);
 };
+
+const scrollProgress = () => {
+  document.body.classList.add("overscroll-none");
+  return {
+    init() {
+      window.addEventListener("scroll", () => {
+        const scrollTop =
+          document.body.scrollTop || document.documentElement.scrollTop;
+        const height =
+          document.documentElement.scrollHeight -
+          document.querySelector("footer").clientHeight -
+          document.documentElement.clientHeight;
+        const percent = (scrollTop / height) * 100;
+        this.percent = percent >= 100 ? 100 : percent;
+      });
+    },
+    percent: 0,
+  };
+};

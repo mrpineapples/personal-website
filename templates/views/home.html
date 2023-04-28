@@ -1,10 +1,33 @@
 {{ define "yield" }}
-<div class="max-w-4xl min-h-screen mx-auto md:mt-44">
-  <h1 class="mb-10 text-4xl md:text-5xl text-gray-900 dark:text-white font-semibold leading-tight">Hey! I'm Michael 👋🏼
-  </h1>
-  <p class="text-lg md:text-xl">I'm a software engineer and here you'll find some of my
-    projects, experiences, and maybe even a few hot takes on the tech industry. So take a look around, feel free to drop
-    me a line, and let's connect!
-  </p>
+<div class="max-w-lg md:max-w-4xl md:min-h-screen mx-auto">
+  <div class="flex flex-col md:flex-row">
+    <img
+      class="self-center rounded-full mb-10 w-32 h-32 md:mb-0 md:mr-10 md:w-64 md:h-64"
+      src="/public/images/headshot.jpg"
+      alt="Headshot of Michael Miranda"
+    />
+    <div>
+      <h1
+        class="mb-10 text-center text-4xl text-gray-900 dark:text-white font-semibold leading-tight md:text-5xl md:text-left"
+      >
+        Hey! I'm Michael 👋🏼
+      </h1>
+      <div class="flex flex-col gap-y-4">
+        <p class="text-lg md:text-xl">
+          I'm a software engineer and here you'll find some of my projects,
+          experiences, and maybe even a few hot takes on the tech industry.
+        </p>
+        <p class="text-lg md:text-xl">
+          Find me on Twitter
+          <a
+            class="text-blue-500"
+            href="https://twitter.com/mrpineapples24"
+          >
+            @mrpineapples24
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
 </div>
 {{ end }}

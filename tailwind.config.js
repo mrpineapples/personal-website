@@ -3,20 +3,11 @@ module.exports = {
   content: ["./templates/**/*.html", "./public/js/*"],
   theme: {
     extend: {
-      animation: {
-        "fade-in": "fadeIn 300ms",
-      },
-      keyframes: {
-        fadeIn: {
-          "0%": { opacity: 0 },
-          "100%": { opacity: 1 },
-        },
-      },
       fontFamily: {
         inter: ["Inter", "sans-serif"],
         fira: ["Fira Code", "monospace"],
       },
-      typography() {
+      typography(theme) {
         return {
           DEFAULT: {
             css: {
@@ -27,7 +18,7 @@ module.exports = {
                 content: "none",
               },
               code: {
-                color: "#ff79c6",
+                color: theme("colors.pink.400"),
               },
             },
           },

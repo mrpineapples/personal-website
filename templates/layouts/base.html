@@ -3,22 +3,57 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <meta name="description" content="{{ or .PageDescription `Michael's Personal Website` }}" />
-  <meta property="og:title" content="{{ or .PageTitle `Michael Miranda` }}" />
-  <meta property="og:description" content="{{ or .PageDescription `Michael's Personal Website` }}" />
-  <meta property="og:image" content="{{ or .PageImage `https://blog.michaelmiranda.dev/public/images/share.png` }}" />
-  <meta name="twitter:title" content="{{ or .PageTitle `Michael Miranda` }}" />
-  <meta name="twitter:description" content="{{ or .PageDescription `Michael's Personal Website` }}" />
-  <meta name="twitter:image" content="{{ or .PageImage `https://blog.michaelmiranda.dev/public/images/share.png` }}" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+  <meta
+    http-equiv="X-UA-Compatible"
+    content="ie=edge"
+  />
+  <meta
+    name="description"
+    content="{{ or .PageDescription `Michael's Personal Website` }}"
+  />
+  <meta
+    property="og:title"
+    content="{{ or .PageTitle `Michael Miranda` }}"
+  />
+  <meta
+    property="og:description"
+    content="{{ or .PageDescription `Michael's Personal Website` }}"
+  />
+  <meta
+    property="og:image"
+    content="{{ or .PageImage `https://blog.michaelmiranda.dev/public/images/share.png` }}"
+  />
+  <meta
+    name="twitter:title"
+    content="{{ or .PageTitle `Michael Miranda` }}"
+  />
+  <meta
+    name="twitter:description"
+    content="{{ or .PageDescription `Michael's Personal Website` }}"
+  />
+  <meta
+    name="twitter:image"
+    content="{{ or .PageImage `https://blog.michaelmiranda.dev/public/images/share.png` }}"
+  />
   <title>{{ or .PageTitle "Michael Miranda" }}</title>
-  <link rel="icon"
+  <link
+    rel="icon"
     href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>{{or .FaviconEmoji `🚀`}}</text></svg>"
-    type="image/svg+xml" />
-  <link rel="stylesheet" href="/public/styles/site.css" />
+    type="image/svg+xml"
+  />
+  <link
+    rel="stylesheet"
+    href="/public/styles/site.css"
+  />
   {{ block "head-tags" . }}{{end}}
-  <script type="module" src="/public/js/header.js" defer></script>
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.0/dist/cdn.min.js"
+  ></script>
 </head>
 
 <body class="bg-gray-50 dark:bg-gray-800 text-gray-700 dark:text-gray-300 font-inter leading-normal tracking-normal">
@@ -26,9 +61,7 @@
   {{ template "header" . }}
 
   <!-- Content -->
-  <main class="px-5 py-10">
-    {{ template "yield" . }}
-  </main>
+  <main class="px-5 py-10">{{ template "yield" . }}</main>
 
   <!-- Footer -->
   {{ template "footer" . }}
