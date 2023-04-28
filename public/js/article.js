@@ -48,7 +48,7 @@ const scrollProgress = () => {
           document.querySelector("footer").clientHeight -
           document.documentElement.clientHeight;
         const percent = (scrollTop / height) * 100;
-        this.percent = percent >= 100 ? 100 : percent;
+        this.percent = percent < 0 ? 0 : percent;
       });
     },
     percent: 0,
