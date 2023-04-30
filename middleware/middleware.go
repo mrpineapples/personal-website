@@ -41,6 +41,11 @@ func MethodOverride(r *gin.Engine) gin.HandlerFunc {
 
 func BasicAuth() gin.HandlerFunc {
 	return func(c *gin.Context) {
+		if gin.Mode() == "debug" {
+			c.Next()
+			return
+		}
+
 		username, password, ok := c.Request.BasicAuth()
 
 		if ok {

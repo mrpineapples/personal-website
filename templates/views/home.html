@@ -1,6 +1,7 @@
 {{ define "yield" }}
-<div class="max-w-lg md:max-w-4xl md:min-h-screen mx-auto">
-  <div class="flex flex-col md:flex-row">
+<div class="max-w-lg md:max-w-4xl mx-auto">
+  <!-- Intro -->
+  <div class="flex flex-col mb-20 md:flex-row">
     <img
       class="self-center rounded-full mb-10 w-32 h-32 md:mb-0 md:mr-10 md:w-64 md:h-64"
       src="/public/images/headshot.jpg"
@@ -8,7 +9,7 @@
     />
     <div>
       <h1
-        class="mb-10 text-center text-4xl text-gray-900 dark:text-white font-semibold leading-tight md:text-5xl md:text-left"
+        class="mb-10 text-center text-4xl text-slate-900 dark:text-white font-semibold leading-tight md:text-5xl md:text-left"
       >
         Hey! I'm Michael 👋🏼
       </h1>
@@ -28,6 +29,35 @@
         </p>
       </div>
     </div>
+  </div>
+  <!-- Blog Posts -->
+  <div class="flex flex-col md:text-lg">
+    <h1
+      class="w-max pb-2 mb-6 text-3xl text-slate-900 dark:text-white font-semibold leading-tight border-b-2 border-pink-300 dark:border-pink-400 md:text-4xl"
+    >
+      Latest Writing
+    </h1>
+    <ul class="mb-6">
+      {{ range .Articles }}
+      <li>
+        <span
+          class="mr-1"
+          aria-hidden="true"
+        >
+          &#128279;
+        </span>
+        <a href="/blog/{{.Slug}}">
+          {{ .Title }}
+        </a>
+      </li>
+      {{ end }}
+    </ul>
+    <p>You can find more
+      <a
+        class="text-blue-500"
+        href="/blog"
+      >here</a>.
+    </p>
   </div>
 </div>
 {{ end }}

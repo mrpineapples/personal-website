@@ -1,21 +1,46 @@
 {{ define "article-form-fields" }}
 <div class="flex flex-col mb-4">
-  <label class="mb-1" for="title">Title</label>
-  <input class="dark:bg-gray-700 dark:text-white rounded" required type="text" name="title" id="title"
-    value="{{ .Article.Title }}"></input>
+  <label
+    class="mb-1"
+    for="title"
+  >Title</label>
+  <input
+    class="dark:bg-slate-700 dark:text-white rounded"
+    required
+    type="text"
+    name="title"
+    id="title"
+    value="{{ .Article.Title }}"
+  ></input>
 </div>
 <div class="flex flex-col mb-4">
-  <label class="mb-1" for="description">Description</label>
-  <textarea class="dark:bg-gray-700 dark:text-white rounded" name="description"
-    id="description">{{ .Article.Description }}</textarea>
+  <label
+    class="mb-1"
+    for="description"
+  >Description</label>
+  <textarea
+    class="dark:bg-slate-700 dark:text-white rounded"
+    name="description"
+    id="description"
+  >{{ .Article.Description }}</textarea>
 </div>
 <div class="flex flex-col mb-4">
-  <label class="mb-1" for="markdown">Markdown</label>
+  <label
+    class="mb-1"
+    for="markdown"
+  >Markdown</label>
   <div class="prose max-w-none">
-    <textarea required name="markdown" id="markdown"></textarea>
+    <textarea
+      required
+      name="markdown"
+      id="markdown"
+    ></textarea>
   </div>
 </div>
 
-<a id="cancel-edit" href="/admin/blog">Cancel</a>
+<a
+  id="cancel-edit"
+  href="/admin/blog"
+>Cancel</a>
 <button type="submit">Save</button>
 {{ end }}

@@ -1,30 +1,34 @@
 {{ define "header" }}
 <nav
-  class="w-full sticky top-0 z-10 bg-gray-800 text-gray-300 px-5"
+  class="w-full sticky top-0 z-10 bg-slate-800 text-white px-5"
   x-data="{ isOpen: false }"
 >
   <div class="max-w-4xl mx-auto h-12 flex justify-between items-center">
     <div class="font-extrabold">
-      <a class="no-underline hover:no-underline" href="/"> Michael Miranda </a>
+      <a
+        class="hover:text-pink-400"
+        href="/"
+      >Michael Miranda</a>
     </div>
     <div class="hidden space-x-8 md:flex">
       <ul class="list-reset flex gap-x-5 flex-1 md:flex-none items-center">
         <li>
-          <a class="inline-block no-underline hover:text-gray-300" href="/blog"
-            >Blog</a
-          >
-        </li>
-        <li>
-          <a class="inline-block no-underline hover:text-gray-300" href="/about"
-            >About</a
-          >
+          <a
+            class="inline-block hover:text-pink-400"
+            href="/blog"
+          >Blog</a>
         </li>
         <li>
           <a
-            class="inline-block no-underline hover:text-gray-300"
+            class="inline-block hover:text-pink-400"
+            href="/about"
+          >About</a>
+        </li>
+        <li>
+          <a
+            class="inline-block hover:text-pink-400"
             href="/contact"
-            >Contact</a
-          >
+          >Contact</a>
         </li>
       </ul>
     </div>
@@ -33,18 +37,16 @@
       @click="isOpen = !isOpen; document.body.classList.toggle('overflow-hidden');"
     >
       <span class="sr-only">Open main menu</span>
-      <div
-        class="block w-5 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2"
-      >
+      <div class="w-5 absolute left-1/2 top-1/2">
         <span
           aria-hidden="true"
           class="block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out"
-          :class="{'rotate-45': isOpen, '-translate-y-1.5': !isOpen }"
+          :class="{'rotate-45': isOpen, '-translate-y-1.5': !isOpen}"
         ></span>
         <span
           aria-hidden="true"
           class="block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out"
-          :class="{'opacity-0': isOpen }"
+          :class="{'opacity-0': isOpen}"
         ></span>
         <span
           aria-hidden="true"
@@ -55,21 +57,20 @@
     </button>
     <div
       :aria-hidden="isOpen"
-      class="h-[100vh] w-full absolute left-0 top-0 bg-gray-800"
+      class="h-[100vh] w-full absolute left-0 top-0 bg-slate-800"
+      x-cloak
       x-show="isOpen"
       x-transition.duration.300ms
     >
-      <ul
-        class="h-full list-reset flex flex-col my-auto items-center justify-center gap-y-5"
-      >
+      <ul class="h-full list-reset flex flex-col my-auto items-center justify-center gap-y-5">
         <li>
-          <a class="inline-block no-underline" href="/blog">Blog</a>
+          <a href="/blog">Blog</a>
         </li>
         <li>
-          <a class="inline-block no-underline" href="/about">About</a>
+          <a href="/about">About</a>
         </li>
         <li>
-          <a class="inline-block no-underline" href="/contact">Contact</a>
+          <a href="/contact">Contact</a>
         </li>
       </ul>
     </div>

@@ -37,7 +37,7 @@ const copyCode = async (block, button) => {
 };
 
 const scrollProgress = () => {
-  document.body.classList.add("overscroll-none");
+  document.body.classList.add("overscroll-y-none");
   return {
     init() {
       window.addEventListener("scroll", () => {
@@ -47,8 +47,8 @@ const scrollProgress = () => {
           document.documentElement.scrollHeight -
           document.querySelector("footer").clientHeight -
           document.documentElement.clientHeight;
-        const percent = (scrollTop / height) * 100;
-        this.percent = percent < 0 ? 0 : percent;
+        const scrollPercentage = (scrollTop / height) * 100;
+        this.percent = Math.min(Math.max(0, scrollPercentage), 100);
       });
     },
     percent: 0,

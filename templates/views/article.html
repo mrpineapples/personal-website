@@ -1,3 +1,7 @@
+{{ define "body-class"}}
+overscroll-none
+{{ end }}
+
 {{ define "yield" }}
 <article class="max-w-2xl mx-auto overscroll-none">
   <div
@@ -12,15 +16,15 @@
     ></div>
   </div>
   <div class="mb-10">
-    <h1 class="mb-6 text-4xl text-gray-900 dark:text-white font-semibold leading-none md:text-5xl">
+    <h1 class="mb-6 text-4xl text-slate-900 dark:text-white font-semibold leading-none md:text-5xl">
       {{- .Article.Title -}}
     </h1>
     {{ if .Article.Description }}
-    <h2 class="text-xl leading-snug text-gray-400">
+    <h2 class="text-xl leading-snug text-slate-400">
       {{- .Article.Description -}}
     </h2>
     {{ end }}
-    <div class="flex items-baseline mt-6 text-gray-400 text-sm">
+    <div class="flex items-baseline mt-6 text-slate-400 text-sm">
       <time
         class="block"
         datetime="{{.Article.CreatedAt}}"
@@ -31,7 +35,7 @@
     </div>
   </div>
   <div
-    class="max-w-none md:text-lg prose prose-blue dark:prose-invert prose-a:no-underline prose-pre:bg-[#282a36] prose-pre:text-[#f8f8f2] prose-pre:pb-0 md:prose-code:max-h-[500px] prose-code:font-fira"
+    class="max-w-none md:text-lg prose prose-slate prose-blue dark:prose-invert prose-a:no-underline prose-pre:bg-[#282a36] prose-pre:text-[#f8f8f2] prose-pre:pb-0 md:prose-code:max-h-[500px] prose-code:font-fira"
   >
     {{- .Content -}}
   </div>

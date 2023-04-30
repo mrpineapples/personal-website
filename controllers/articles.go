@@ -157,7 +157,7 @@ func UpdateArticle(c *gin.Context) {
 		panic(errors.New("No row found to update"))
 	}
 
-	c.Redirect(http.StatusSeeOther, "/articles/"+article.Slug)
+	c.Redirect(http.StatusSeeOther, "/blog/"+article.Slug)
 }
 
 func DeleteArticle(c *gin.Context) {

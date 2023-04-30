@@ -5,10 +5,12 @@ import (
 	"fmt"
 	"os"
 	"strings"
+
+	"github.com/gin-gonic/gin"
 )
 
 func LoadEnv() {
-	isProd := os.Getenv("GIN_MODE") == "release"
+	isProd := gin.Mode() == "release"
 	envFilename := ".env.dev"
 	if isProd {
 		envFilename = ".env.production"
