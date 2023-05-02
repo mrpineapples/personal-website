@@ -3,9 +3,24 @@ module.exports = {
   content: ["./templates/**/*.html", "./public/js/*"],
   theme: {
     extend: {
+      animation: {
+        wave: "wave 2s linear infinite",
+      },
       fontFamily: {
         inter: ["Inter", "sans-serif"],
         fira: ["Fira Code", "monospace"],
+      },
+      keyframes: {
+        wave: {
+          "0%": { transform: "rotate(0.0deg)" },
+          "10%": { transform: "rotate(14deg)" },
+          "20%": { transform: "rotate(-8deg)" },
+          "30%": { transform: "rotate(14deg)" },
+          "40%": { transform: "rotate(-4deg)" },
+          "50%": { transform: "rotate(10.0deg)" },
+          "60%": { transform: "rotate(0.0deg)" },
+          "100%": { transform: "rotate(0.0deg)" },
+        },
       },
       typography(theme) {
         return {
