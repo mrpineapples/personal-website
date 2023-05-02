@@ -2,3 +2,7 @@ michaelmiranda.dev {
     encode zstd gzip
     reverse_proxy localhost:8000
 }
+
+www.michaelmiranda.dev {
+    redir https://michaelmiranda.dev{uri}
+}
