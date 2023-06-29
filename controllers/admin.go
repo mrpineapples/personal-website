@@ -71,7 +71,7 @@ func EditArticle(c *gin.Context) {
 	article.Slug = slug
 
 	c.HTML(http.StatusOK, "edit-article", gin.H{
-		"PageTitle":    "Admin",
+		"PageTitle":    "Editing | " + article.Title,
 		"FaviconEmoji": "🛠",
 		"Article":      article,
 	})

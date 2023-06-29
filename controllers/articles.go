@@ -79,8 +79,8 @@ func GetArticles(c *gin.Context) {
 	}
 
 	c.HTML(http.StatusOK, "articles", gin.H{
-		"PageTitle":       "Michael Miranda | Articles",
-		"PageDescription": "All of Michael's articles",
+		"PageTitle":       "Michael Miranda | Blog",
+		"PageDescription": "All of Michael's posts",
 		"Articles":        articles,
 	})
 }
@@ -88,7 +88,8 @@ func GetArticles(c *gin.Context) {
 // NewArticle renders the new article view
 func NewArticle(c *gin.Context) {
 	c.HTML(http.StatusOK, "new-article", gin.H{
-		"PageTitle": "Admin | Create An Article",
+		"PageTitle":    "Admin | Create a Post",
+		"FaviconEmoji": "🛠",
 	})
 }
 
