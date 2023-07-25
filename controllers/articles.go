@@ -1,40 +1,25 @@
 package controllers
 
 import (
-	"bytes"
 	"errors"
-	"fmt"
-	"html/template"
 	"net/http"
 	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/gosimple/slug"
-	"github.com/jackc/pgx/v5"
 	"github.com/mrpineapples/personal-website/models"
 	"github.com/mrpineapples/personal-website/utils"
 )
 
 func GetArticle(c *gin.Context) {
-	sqlStatement := `
-		SELECT title, description, markdown, created_at, updated_at
-		FROM articles
-		WHERE slug = $1;
-	`
-	slug := c.Param("slug")
-	row := models.Pool.QueryRow(models.DBContext, sqlStatement, slug)
-
-	var article models.Article
-	err := row.Scan(&article.Title, &article.Description, &article.Markdown, &article.CreatedAt, &article.UpdatedAt)
+	article, err := models.GetArticleBySlug(c.Param("slug"))
 	if err != nil {
-		if err == pgx.ErrNoRows {
-			fmt.Println("No rows were returned for the following slug:", slug)
-		}
 		utils.RenderNotFound(c)
+		return
 	}
 
-	var articleBuf bytes.Buffer
-	if err := utils.Markdown.Convert([]byte(article.Markdown), &articleBuf); err != nil {
+	html, err := article.ToHTML()
+	if err != nil {
 		panic(err)
 	}
 
@@ -47,7 +32,7 @@ func GetArticle(c *gin.Context) {
 		"PageTitle":       article.Title,
 		"PageDescription": pageDescription,
 		"Article":         article,
-		"Content":         template.HTML(articleBuf.String()),
+		"Content":         html,
 	})
 }
 
