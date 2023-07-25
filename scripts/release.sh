@@ -1,5 +1,6 @@
 #!/bin/bash
 cd ~/Developer/personal-website
+rm -rf build
 mkdir build
 
 echo "Releasing personal-website 🏁"
