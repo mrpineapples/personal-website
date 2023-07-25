@@ -43,7 +43,7 @@ func GetAdminArticles(c *gin.Context) {
 	}
 
 	c.HTML(http.StatusOK, "articles", gin.H{
-		"PageTitle":    "Admin | Articles",
+		"PageTitle":    "Admin | Posts",
 		"FaviconEmoji": "🛠",
 		"Articles":     articles,
 		"IsAdmin":      true,
