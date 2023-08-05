@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/mrpineapples/personal-website/database"
 	"github.com/mrpineapples/personal-website/models"
 )
 
@@ -15,7 +16,7 @@ func Home(c *gin.Context) {
 		LIMIT 3;
 	`
 
-	rows, err := models.Pool.Query(models.DBContext, sqlStatement)
+	rows, err := database.Pool.Query(database.DBContext, sqlStatement)
 	if err != nil {
 		panic(err)
 	}

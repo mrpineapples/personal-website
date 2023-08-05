@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/jackc/pgx/v5"
+	"github.com/mrpineapples/personal-website/database"
 	"github.com/mrpineapples/personal-website/utils"
 )
 
@@ -38,7 +39,7 @@ func GetArticleByID(ID string) (Article, error) {
 	`
 
 	article := Article{}
-	row := Pool.QueryRow(DBContext, sqlStatement, ID)
+	row := database.Pool.QueryRow(database.DBContext, sqlStatement, ID)
 	err := row.Scan(&article.ID, &article.Title, &article.Description, &article.Markdown, &article.Slug, &article.CreatedAt, &article.UpdatedAt)
 
 	if err != nil {
@@ -59,7 +60,7 @@ func GetArticleBySlug(slug string) (Article, error) {
 	`
 
 	article := Article{}
-	row := Pool.QueryRow(DBContext, sqlStatement, slug)
+	row := database.Pool.QueryRow(database.DBContext, sqlStatement, slug)
 	err := row.Scan(&article.ID, &article.Title, &article.Description, &article.Markdown, &article.Slug, &article.CreatedAt, &article.UpdatedAt)
 
 	if err != nil {
@@ -78,7 +79,7 @@ func GetArticles() ([]Article, error) {
 		FROM articles
 		ORDER BY created_at DESC;
 	`
-	rows, err := Pool.Query(DBContext, sqlStatement)
+	rows, err := database.Pool.Query(database.DBContext, sqlStatement)
 	if err != nil {
 		return nil, err
 	}
@@ -107,7 +108,7 @@ func CreateArticle(article Article) error {
 		INSERT INTO articles (title, description, markdown, slug)
 		VALUES ($1, $2, $3, $4);
 	`
-	_, err := Pool.Exec(DBContext, sqlStatement, article.Title, article.Description, article.Markdown, article.Slug)
+	_, err := database.Pool.Exec(database.DBContext, sqlStatement, article.Title, article.Description, article.Markdown, article.Slug)
 	if err != nil {
 		return err
 	}
@@ -121,7 +122,7 @@ func UpdateArticle(article Article) error {
 		SET slug = $2, title = $3, description = $4, markdown = $5, updated_at = $6
 		WHERE id = $1;
 	`
-	cmdTag, err := Pool.Exec(DBContext, sqlStatement, article.ID, article.Slug, article.Title, article.Description, article.Markdown, article.UpdatedAt)
+	cmdTag, err := database.Pool.Exec(database.DBContext, sqlStatement, article.ID, article.Slug, article.Title, article.Description, article.Markdown, article.UpdatedAt)
 	if err != nil {
 		return err
 	} else if cmdTag.RowsAffected() != 1 {
@@ -136,7 +137,7 @@ func DeleteArticle(ID string) error {
 		DELETE FROM articles
 		WHERE id = $1;
 	`
-	cmdTag, err := Pool.Exec(DBContext, sqlStatement, ID)
+	cmdTag, err := database.Pool.Exec(database.DBContext, sqlStatement, ID)
 	if err != nil {
 		return err
 	} else if cmdTag.RowsAffected() != 1 {

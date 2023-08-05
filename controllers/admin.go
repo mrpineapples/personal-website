@@ -6,6 +6,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/jackc/pgx/v5"
+	"github.com/mrpineapples/personal-website/database"
 	"github.com/mrpineapples/personal-website/models"
 )
 
@@ -21,7 +22,7 @@ func GetAdminArticles(c *gin.Context) {
 		FROM articles
 		ORDER BY created_at DESC;
 	`
-	rows, err := models.Pool.Query(models.DBContext, sqlStatement)
+	rows, err := database.Pool.Query(database.DBContext, sqlStatement)
 	if err != nil {
 		panic(err)
 	}
@@ -58,7 +59,7 @@ func EditArticle(c *gin.Context) {
 		WHERE slug = $1;
 	`
 	slug := c.Param("slug")
-	row := models.Pool.QueryRow(models.DBContext, sqlStatement, slug)
+	row := database.Pool.QueryRow(database.DBContext, sqlStatement, slug)
 
 	var article models.Article
 	err := row.Scan(&article.ID, &article.Title, &article.Description, &article.Markdown, &article.CreatedAt, &article.UpdatedAt)
