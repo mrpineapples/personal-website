@@ -5,11 +5,11 @@ mkdir build
 
 echo "Releasing personal-website 🏁"
 echo "  Building the server..."
-GOOS=linux GOARCH=amd64 go build -o ./server .
+GOOS=linux GOARCH=amd64 go build -o ./build/server .
 echo "  Server built successfully 🏗"
 
 echo "  Bundling code..."
-cp -R public templates server .env.production Caddyfile build/
+cp -R database/migrations public templates .env.production Caddyfile build/
 echo "  Bundle created successfully 📦"
 
 echo "  Minifying CSS..."
@@ -25,7 +25,6 @@ rsync -avr build/ root@michaelmiranda.dev:/home/mike/apps/personal-website
 echo "  Code uploaded successfully 📦"
 
 echo "  Cleaning up..."
-rm server
 rm -rf build
 echo "  Finished cleaning 🧹"
 
