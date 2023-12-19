@@ -1,0 +1,56 @@
+package components
+
+import "github.com/mrpineapples/personal-website/models"
+import "github.com/mrpineapples/personal-website/utils"
+import "html/template"
+
+func InsertHTML(h template.HTML) templ.Component {
+	return templ.ComponentFunc(func(ctx context.Context, w io.Writer) error {
+		_, err := io.WriteString(w, string(h))
+		return err
+	})
+}
+
+templ Article(article models.Article) {
+	@Layout(Props{}) {
+		<article class="max-w-2xl mx-auto overscroll-none">
+			<div
+ 				x-data="scrollProgress"
+ 				x-init="init"
+ 				x-cloak
+ 				class="fixed top-12 inset-x-0"
+			>
+				<div
+ 					class="h-1 bg-pink-400"
+ 					:style="`width: ${percent}%`"
+				></div>
+			</div>
+			<div class="mb-10">
+				<h1 class="mb-6 text-4xl text-slate-900 dark:text-white font-semibold leading-none md:text-5xl">
+					{ article.Title }
+				</h1>
+				if article.Description != "" {
+					<h2 class="text-xl leading-snug text-slate-400">
+						{ article.Description }
+					</h2>
+				}
+				<div class="flex items-baseline mt-6 text-slate-400 text-sm">
+					<time
+ 						class="block"
+ 						datetime="{{.Article.CreatedAt}}"
+					>
+						{ article.CreatedAt.Format("Jan 2, 2006") }
+					</time>
+					<p class="ml-4">{ utils.GetReadingTime(article.Markdown) }</p>
+				</div>
+			</div>
+			if html, err := article.ToHTML(); err == nil {
+				<div
+ 					class="max-w-none md:text-lg prose prose-slate prose-blue dark:prose-invert prose-a:no-underline prose-pre:bg-[#282a36] prose-pre:text-[#f8f8f2] prose-pre:pb-0 md:prose-code:max-h-[500px] prose-code:font-fira"
+				>
+					@InsertHTML(html)
+				</div>
+			}
+		</article>
+	}
+}

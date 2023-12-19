@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/mrpineapples/personal-website/components"
 	"github.com/mrpineapples/personal-website/database"
 	"github.com/mrpineapples/personal-website/models"
 )
@@ -32,7 +33,5 @@ func Home(c *gin.Context) {
 		articles = append(articles, article)
 	}
 
-	c.HTML(http.StatusOK, "home", gin.H{
-		"Articles": articles,
-	})
+	c.HTML(http.StatusOK, "", components.Home(articles))
 }

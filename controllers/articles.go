@@ -6,6 +6,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/gosimple/slug"
+	"github.com/mrpineapples/personal-website/components"
 	"github.com/mrpineapples/personal-website/models"
 	"github.com/mrpineapples/personal-website/utils"
 )
@@ -23,35 +24,38 @@ func GetArticle(c *gin.Context) {
 		return
 	}
 
-	html, err := article.ToHTML()
-	if err != nil {
-		panic(err)
+	// html, err := article.ToHTML()
+	// if err != nil {
+	// 	panic(err)
+	// }
+
+	if article.Description == "" {
+		article.Description = "An article written by Michael"
 	}
 
-	pageDescription := article.Description
-	if pageDescription == "" {
-		pageDescription = "An article written by Michael"
-	}
+	c.HTML(http.StatusOK, "", components.Article(article))
 
-	c.HTML(http.StatusOK, "article", gin.H{
-		"PageTitle":       article.Title,
-		"PageDescription": pageDescription,
-		"Article":         article,
-		"Content":         html,
-	})
+	// c.HTML(http.StatusOK, "article", gin.H{
+	// 	"PageTitle":       article.Title,
+	// 	"PageDescription": pageDescription,
+	// 	"Article":         article,
+	// 	"Content":         html,
+	// })
 }
 
 func GetArticles(c *gin.Context) {
-	articles, err := models.GetArticles()
+	a, err := models.GetArticles()
 	if err != nil {
 		panic(err)
 	}
 
-	c.HTML(http.StatusOK, "articles", gin.H{
-		"PageTitle":       "Michael Miranda | Blog",
-		"PageDescription": "All of Michael's posts",
-		"Articles":        articles,
-	})
+	c.HTML(http.StatusOK, "", components.Articles(a))
+
+	// c.HTML(http.StatusOK, "articles", gin.H{
+	// 	"PageTitle":       "Michael Miranda | Blog",
+	// 	"PageDescription": "All of Michael's posts",
+	// 	"Articles":        articles,
+	// })
 }
 
 // NewArticle renders the new article view

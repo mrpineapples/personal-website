@@ -4,10 +4,9 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/mrpineapples/personal-website/components"
 )
 
 func About(c *gin.Context) {
-	c.HTML(http.StatusOK, "about", gin.H{
-		"PageTitle": "Michael Miranda | About",
-	})
+	c.HTML(http.StatusOK, "", components.About())
 }
