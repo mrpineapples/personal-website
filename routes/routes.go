@@ -4,14 +4,16 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/mrpineapples/personal-website/components"
 	"github.com/mrpineapples/personal-website/controllers"
 	"github.com/mrpineapples/personal-website/middleware"
-	"github.com/mrpineapples/personal-website/utils"
 )
 
 // InitializeRoutes declares all valid routes
 func InitializeRoutes(r *gin.Engine) {
-	r.NoRoute(utils.RenderNotFound)
+	r.NoRoute(func(c *gin.Context) {
+		c.HTML(http.StatusNotFound, "", components.NotFound())
+	})
 	r.GET("/", controllers.Home)
 	r.GET("/about", controllers.About)
 	r.GET("/contact", controllers.Contact)

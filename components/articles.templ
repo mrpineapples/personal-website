@@ -6,7 +6,7 @@ import (
 	"fmt"
 )
 
-templ Articles(articles []models.Article) {
+templ Articles(articles []models.Article, isAdmin bool) {
 	@Layout(Props{}) {
 		<div class="max-w-4xl mx-auto md:min-h-screen">
 			<h1 class="mb-5 text-4xl text-slate-900 dark:text-white font-semibold md:text-5xl">
@@ -22,7 +22,7 @@ templ Articles(articles []models.Article) {
 							>{ article.CreatedAt.Format("Jan 2, 2006") }</time>
 							<div class="flex flex-col">
 								<h2 class="text-2xl text-slate-900 dark:text-white font-medium mb-4">
-									{  article.Title }
+									{ article.Title }
 								</h2>
 								if article.Description != "" {
 									<p class="mb-4 text-slate-500 dark:text-slate-400">{ article.Description }</p>
@@ -34,11 +34,11 @@ templ Articles(articles []models.Article) {
 									Read More ({ utils.GetReadingTime(article.Markdown) })
 									<span aria-hidden="true">&#8594;</span>
 								</a>
-								if false {
+								if isAdmin {
 									<div class="flex mt-4">
 										<a
  											class="mr-4 hover:text-blue-500"
- 											href="/admin/blog/{{.Slug}}/edit"
+ 											href={ templ.URL(fmt.Sprintf("/admin/blog/%s/edit", article.Slug)) }
 										>Edit</a>
 										<form
  											action="/articles/{{.ID}}?_method=DELETE"

@@ -6,14 +6,13 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/jackc/pgx/v5"
+	"github.com/mrpineapples/personal-website/components"
 	"github.com/mrpineapples/personal-website/database"
 	"github.com/mrpineapples/personal-website/models"
 )
 
 func Admin(c *gin.Context) {
-	c.HTML(http.StatusOK, "admin", gin.H{
-		"PageTitle": "Admin",
-	})
+	c.HTML(http.StatusOK, "", components.AdminHome())
 }
 
 func GetAdminArticles(c *gin.Context) {
@@ -43,12 +42,14 @@ func GetAdminArticles(c *gin.Context) {
 		panic(err)
 	}
 
-	c.HTML(http.StatusOK, "articles", gin.H{
-		"PageTitle":    "Admin | Posts",
-		"FaviconEmoji": "🛠",
-		"Articles":     articles,
-		"IsAdmin":      true,
-	})
+	c.HTML(http.StatusOK, "", components.Articles(articles, true))
+
+	// c.HTML(http.StatusOK, "articles", gin.H{
+	// 	"PageTitle":    "Admin | Posts",
+	// 	"FaviconEmoji": "🛠",
+	// 	"Articles":     articles,
+	// 	"IsAdmin":      true,
+	// })
 }
 
 // EditArticle renders the edit article view
@@ -71,9 +72,10 @@ func EditArticle(c *gin.Context) {
 	}
 	article.Slug = slug
 
-	c.HTML(http.StatusOK, "edit-article", gin.H{
-		"PageTitle":    "Editing | " + article.Title,
-		"FaviconEmoji": "🛠",
-		"Article":      article,
-	})
+	c.HTML(http.StatusOK, "", components.EditArticle(article))
+	// c.HTML(http.StatusOK, "edit-article", gin.H{
+	// 	"PageTitle":    "Editing | " + article.Title,
+	// 	"FaviconEmoji": "🛠",
+	// 	"Article":      article,
+	// })
 }

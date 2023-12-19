@@ -8,7 +8,6 @@ import (
 	"github.com/gosimple/slug"
 	"github.com/mrpineapples/personal-website/components"
 	"github.com/mrpineapples/personal-website/models"
-	"github.com/mrpineapples/personal-website/utils"
 )
 
 var articleInput struct {
@@ -20,7 +19,7 @@ var articleInput struct {
 func GetArticle(c *gin.Context) {
 	article, err := models.GetArticleBySlug(c.Param("slug"))
 	if err != nil {
-		utils.RenderNotFound(c)
+		c.HTML(http.StatusNotFound, "", components.NotFound())
 		return
 	}
 
@@ -49,7 +48,7 @@ func GetArticles(c *gin.Context) {
 		panic(err)
 	}
 
-	c.HTML(http.StatusOK, "", components.Articles(a))
+	c.HTML(http.StatusOK, "", components.Articles(a, false))
 
 	// c.HTML(http.StatusOK, "articles", gin.H{
 	// 	"PageTitle":       "Michael Miranda | Blog",
@@ -60,10 +59,11 @@ func GetArticles(c *gin.Context) {
 
 // NewArticle renders the new article view
 func NewArticle(c *gin.Context) {
-	c.HTML(http.StatusOK, "new-article", gin.H{
-		"PageTitle":    "Admin | Create a Post",
-		"FaviconEmoji": "🛠",
-	})
+	c.HTML(http.StatusOK, "", components.NewArticle())
+	// c.HTML(http.StatusOK, "new-article", gin.H{
+	// 	"PageTitle":    "Admin | Create a Post",
+	// 	"FaviconEmoji": "🛠",
+	// })
 }
 
 // CreateArticle creates a new article in our database
