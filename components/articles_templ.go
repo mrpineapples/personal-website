@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"github.com/mrpineapples/personal-website/models"
 	"github.com/mrpineapples/personal-website/utils"
+	"strconv"
 )
 
 func Articles(articles []models.Article, isAdmin bool) templ.Component {
@@ -50,7 +51,15 @@ func Articles(articles []models.Article, isAdmin bool) templ.Component {
 			}
 			if len(articles) > 0 {
 				for _, article := range articles {
-					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<li class=\"flex flex-wrap leading-normal border-t border-slate-300 py-8 gap-x-8 gap-y-4 md:flex-nowrap\"><time class=\"w-full text-slate-500 dark:text-slate-400 shrink-0 md:w-28\" datetime=\"{{.CreatedAt}}\">")
+					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<li class=\"flex flex-wrap leading-normal border-t border-slate-300 py-8 gap-x-8 gap-y-4 md:flex-nowrap\"><time class=\"w-full text-slate-500 dark:text-slate-400 shrink-0 md:w-28\" datetime=\"")
+					if templ_7745c5c3_Err != nil {
+						return templ_7745c5c3_Err
+					}
+					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(article.CreatedAt.String()))
+					if templ_7745c5c3_Err != nil {
+						return templ_7745c5c3_Err
+					}
+					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\">")
 					if templ_7745c5c3_Err != nil {
 						return templ_7745c5c3_Err
 					}
@@ -147,12 +156,29 @@ func Articles(articles []models.Article, isAdmin bool) templ.Component {
 						if templ_7745c5c3_Err != nil {
 							return templ_7745c5c3_Err
 						}
-						_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</a><form action=\"/articles/{{.ID}}?_method=DELETE\" data-article-id=\"{{.ID}}\" method=\"post\" x-data @submit.prevent=\"confirm(&#39;Are you sure you want to delete this article?&#39;) &amp;&amp; $el.submit()\"><button class=\"text-red-500\" type=\"submit\">")
+						_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</a><form action=\"")
 						if templ_7745c5c3_Err != nil {
 							return templ_7745c5c3_Err
 						}
-						templ_7745c5c3_Var14 := `Delete`
-						_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var14)
+						var templ_7745c5c3_Var14 templ.SafeURL = templ.URL(fmt.Sprintf("/articles/%d?_method=DELETE", article.ID))
+						_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(string(templ_7745c5c3_Var14)))
+						if templ_7745c5c3_Err != nil {
+							return templ_7745c5c3_Err
+						}
+						_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" data-article-id=\"")
+						if templ_7745c5c3_Err != nil {
+							return templ_7745c5c3_Err
+						}
+						_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(strconv.Itoa(article.ID)))
+						if templ_7745c5c3_Err != nil {
+							return templ_7745c5c3_Err
+						}
+						_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" method=\"post\" x-data @submit.prevent=\"confirm(&#39;Are you sure you want to delete this article?&#39;) &amp;&amp; $el.submit()\"><button class=\"text-red-500\" type=\"submit\">")
+						if templ_7745c5c3_Err != nil {
+							return templ_7745c5c3_Err
+						}
+						templ_7745c5c3_Var15 := `Delete`
+						_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var15)
 						if templ_7745c5c3_Err != nil {
 							return templ_7745c5c3_Err
 						}
@@ -171,8 +197,8 @@ func Articles(articles []models.Article, isAdmin bool) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Var15 := `No articles exist, how sad 😢`
-				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var15)
+				templ_7745c5c3_Var16 := `No articles exist, how sad 😢`
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ_7745c5c3_Var16)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}

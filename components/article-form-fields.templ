@@ -15,6 +15,7 @@ templ ArticleFormFields(article models.Article) {
  			name="title"
  			id="title"
  			value={ article.Title }
+ 			placeholder="Title..."
 		/>
 	</div>
 	<div class="flex flex-col mb-4">
@@ -26,6 +27,7 @@ templ ArticleFormFields(article models.Article) {
  			class="dark:bg-slate-700 dark:text-white rounded"
  			name="description"
  			id="description"
+ 			placeholder="Description..."
 		>{ article.Description }</textarea>
 	</div>
 	<div class="flex flex-col mb-4">
@@ -38,6 +40,7 @@ templ ArticleFormFields(article models.Article) {
  				required
  				name="markdown"
  				id="markdown"
+ 				placeholder="Content..."
 			></textarea>
 		</div>
 	</div>

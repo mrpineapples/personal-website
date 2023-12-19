@@ -37,7 +37,7 @@ templ Article(article models.Article) {
 				<div class="flex items-baseline mt-6 text-slate-400 text-sm">
 					<time
  						class="block"
- 						datetime="{{.Article.CreatedAt}}"
+ 						datetime={ article.CreatedAt.String() }
 					>
 						{ article.CreatedAt.Format("Jan 2, 2006") }
 					</time>

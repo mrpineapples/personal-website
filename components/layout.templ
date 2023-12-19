@@ -5,6 +5,8 @@ type Props struct {
 	PageTitle       string
 	PageImage       string
 	FaviconEmoji    string
+	HeadTags        templ.Component
+	Scripts         templ.ComponentScript
 }
 
 templ Layout(props Props) {
@@ -58,6 +60,9 @@ templ Layout(props Props) {
  				rel="stylesheet"
  				href="/public/styles/site.css"
 			/>
+			if props.HeadTags != nil {
+				@props.HeadTags
+			}
 			<script defer src="/public/js/vendor/alpine@3.12.3.js"></script>
 			<!-- Google tag (gtag.js) -->
 			<script async src="https://www.googletagmanager.com/gtag/js?id=G-96EGTYYVB8"></script>
@@ -75,5 +80,8 @@ templ Layout(props Props) {
 			</main>
 			@Footer()
 		</body>
+		if props.Scripts.Name != "" {
+			@props.Scripts
+		}
 	</html>
 }

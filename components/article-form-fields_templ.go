@@ -42,7 +42,7 @@ func ArticleFormFields(article models.Article) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\"></div><div class=\"flex flex-col mb-4\"><label class=\"mb-1\" for=\"description\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" placeholder=\"Title...\"></div><div class=\"flex flex-col mb-4\"><label class=\"mb-1\" for=\"description\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -51,7 +51,7 @@ func ArticleFormFields(article models.Article) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</label> <textarea class=\"dark:bg-slate-700 dark:text-white rounded\" name=\"description\" id=\"description\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</label> <textarea class=\"dark:bg-slate-700 dark:text-white rounded\" name=\"description\" id=\"description\" placeholder=\"Description...\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -69,7 +69,7 @@ func ArticleFormFields(article models.Article) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</label><div class=\"prose max-w-none\"><textarea required name=\"markdown\" id=\"markdown\"></textarea></div></div><a id=\"cancel-edit\" href=\"/admin/blog\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</label><div class=\"prose max-w-none\"><textarea required name=\"markdown\" id=\"markdown\" placeholder=\"Content...\"></textarea></div></div><a id=\"cancel-edit\" href=\"/admin/blog\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

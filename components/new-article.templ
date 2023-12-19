@@ -2,8 +2,30 @@ package components
 
 import "github.com/mrpineapples/personal-website/models"
 
+templ easyMDETags() {
+	<link
+ 		rel="stylesheet"
+ 		href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css"
+	/>
+	<script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
+}
+
+script newEditor() {
+  const easyMDE = new EasyMDE({
+    autosave: {
+      delay: 1000,
+      enabled: true,
+      text: "Last Saved ",
+      uniqueId: "new-article",
+    },
+    element: document.getElementById("markdown"),
+    forceSync: true,
+    maxHeight: "500px",
+  });
+}
+
 templ NewArticle() {
-	@Layout(Props{}) {
+	@Layout(Props{HeadTags: easyMDETags(), Scripts: newEditor()}) {
 		<div class="max-w-4xl mx-auto">
 			<div>
 				<h1 class="my-4 text-5xl text-slate-900 dark:text-white font-semibold leading-tight">
