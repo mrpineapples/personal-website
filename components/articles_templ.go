@@ -173,7 +173,7 @@ func Articles(articles []models.Article, isAdmin bool) templ.Component {
 						if templ_7745c5c3_Err != nil {
 							return templ_7745c5c3_Err
 						}
-						_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" method=\"post\" x-data @submit.prevent=\"confirm(&#39;Are you sure you want to delete this article?&#39;) &amp;&amp; $el.submit()\"><button class=\"text-red-500\" type=\"submit\">")
+						_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\" method=\"post\" x-data @submit=\"localStorage.removeItem(`smde_edit-article-${$event.target.dataset.articleId}`)\" @submit.prevent=\"confirm(&#39;Are you sure you want to delete this article?&#39;) &amp;&amp; $el.submit()\"><button class=\"text-red-500\" type=\"submit\">")
 						if templ_7745c5c3_Err != nil {
 							return templ_7745c5c3_Err
 						}

@@ -14,11 +14,56 @@ import "github.com/mrpineapples/personal-website/models"
 import "github.com/mrpineapples/personal-website/utils"
 import "html/template"
 
-func InsertHTML(h template.HTML) templ.Component {
+func insertHTML(h template.HTML) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, w io.Writer) error {
 		_, err := io.WriteString(w, string(h))
 		return err
 	})
+}
+
+func handleCodeBlocks() templ.ComponentScript {
+	return templ.ComponentScript{
+		Name: `__templ_handleCodeBlocks_45c9`,
+		Function: `function __templ_handleCodeBlocks_45c9(){const copyButtonLabel = "Copy Code";
+	const blocks = document.querySelectorAll(".prose pre");
+
+	blocks.forEach((block) => {
+		const lang = block.parentElement.getAttribute("data-lang");
+		const header = document.createElement("div");
+		header.className = "font-inter flex items-baseline mb-4 select-none";
+		const languageHeading = document.createElement("p");
+		languageHeading.className =
+			"text-base m-0 px-4 pb-1 border-b border-[#ff79c6] md:text-lg";
+		languageHeading.innerText = lang || "Text";
+		header.append(languageHeading);
+		block.tabIndex = "-1";
+		block.prepend(header);
+
+		if (navigator.clipboard) {
+			const button = document.createElement("button");
+			button.className = "text-xs ml-auto p-2 border rounded-lg cursor-pointer";
+			button.innerText = copyButtonLabel;
+			button.addEventListener("click", async () => {
+				await copyCode(block, button);
+			});
+
+			header.append(button);
+		}
+	});
+
+	const copyCode = async (block, button) => {
+		const code = block.querySelector("code");
+		const text = code.innerText.replace(/^\s*[\r\n]/gm, "");
+		await navigator.clipboard.writeText(text);
+		button.innerText = "Copied!";
+
+		setTimeout(() => {
+			button.innerText = copyButtonLabel;
+		}, 750);
+	};}`,
+		Call:       templ.SafeScript(`__templ_handleCodeBlocks_45c9`),
+		CallInline: templ.SafeScriptInline(`__templ_handleCodeBlocks_45c9`),
+	}
 }
 
 func Article(article models.Article) templ.Component {
@@ -40,7 +85,7 @@ func Article(article models.Article) templ.Component {
 				templ_7745c5c3_Buffer = templ.GetBuffer()
 				defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<article class=\"max-w-2xl mx-auto overscroll-none\"><div x-data=\"scrollProgress\" x-init=\"init\" x-cloak class=\"fixed top-12 inset-x-0\"><div class=\"h-1 bg-pink-400\" :style=\"`width: ${percent}%`\"></div></div><div class=\"mb-10\"><h1 class=\"mb-6 text-4xl text-slate-900 dark:text-white font-semibold leading-none md:text-5xl\">")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<article class=\"max-w-2xl mx-auto overscroll-none\"><div x-data=\"{ percent: 0 }\" x-init=\"() =&gt; {\n					document.body.classList.add(&#39;overscroll-y-none&#39;);\n					const updateScrollProgress = () =&gt; {\n						const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;\n						const height = document.documentElement.scrollHeight -\n							document.querySelector(&#39;footer&#39;).clientHeight -\n							document.documentElement.clientHeight;\n						const scrollPercentage = (scrollTop / height) * 100;\n						percent = Math.min(Math.max(0, scrollPercentage), 100);\n					};\n					\n					window.addEventListener(&#39;scroll&#39;, updateScrollProgress);\n					updateScrollProgress();\n				}\" x-cloak class=\"fixed top-12 inset-x-0\"><div class=\"h-1 bg-pink-400\" :style=\"`width: ${percent}%`\"></div></div><div class=\"mb-10\"><h1 class=\"mb-6 text-4xl text-slate-900 dark:text-white font-semibold leading-none md:text-5xl\">")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -103,7 +148,7 @@ func Article(article models.Article) templ.Component {
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
-				templ_7745c5c3_Err = InsertHTML(html).Render(ctx, templ_7745c5c3_Buffer)
+				templ_7745c5c3_Err = insertHTML(html).Render(ctx, templ_7745c5c3_Buffer)
 				if templ_7745c5c3_Err != nil {
 					return templ_7745c5c3_Err
 				}
@@ -121,7 +166,7 @@ func Article(article models.Article) templ.Component {
 			}
 			return templ_7745c5c3_Err
 		})
-		templ_7745c5c3_Err = Layout(Props{}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = Layout(Props{Scripts: handleCodeBlocks()}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
