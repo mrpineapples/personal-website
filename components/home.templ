@@ -4,7 +4,7 @@ import "fmt"
 import "github.com/mrpineapples/personal-website/models"
 
 templ Home(articles []models.Article) {
-	@Layout(Props{}) {
+	@Layout(LayoutProps{}) {
 		<div class="max-w-lg md:max-w-4xl mx-auto">
 			<!-- Intro -->
 			<div class="flex flex-col mb-20 md:flex-row">

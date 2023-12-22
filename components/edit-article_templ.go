@@ -111,10 +111,13 @@ func EditArticle(article models.Article) templ.Component {
 			}
 			return templ_7745c5c3_Err
 		})
-		templ_7745c5c3_Err = Layout(Props{HeadTags: easyMDETags(), Scripts: editEditor(map[string]any{
-			"id":       article.ID,
-			"markdown": article.Markdown,
-		}),
+		templ_7745c5c3_Err = Layout(LayoutProps{
+			PageTitle: "Michael Miranda | Editing | " + article.Title,
+			HeadTags:  easyMDETags(),
+			InlineScript: editEditor(map[string]any{
+				"id":       article.ID,
+				"markdown": article.Markdown,
+			}),
 		}).Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err

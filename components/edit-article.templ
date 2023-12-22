@@ -25,7 +25,10 @@ script editEditor(data map[string]any) {
 }
 
 templ EditArticle(article models.Article) {
-	@Layout(Props{HeadTags: easyMDETags(), Scripts: editEditor(map[string]any{
+	@Layout(LayoutProps{
+		PageTitle: "Michael Miranda | Editing | " + article.Title,
+		HeadTags: easyMDETags(), 
+		InlineScript: editEditor(map[string]any{
         "id": article.ID,
         "markdown": article.Markdown,
       }),

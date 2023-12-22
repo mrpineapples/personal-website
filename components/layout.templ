@@ -1,15 +1,17 @@
 package components
 
-type Props struct {
-	PageDescription string
-	PageTitle       string
-	PageImage       string
-	FaviconEmoji    string
+import "fmt"
+
+type LayoutProps struct {
 	HeadTags        templ.Component
-	Scripts         templ.ComponentScript
+	InlineScript    templ.ComponentScript
+	PageDescription string
+	PageImage       string
+	PageTitle       string
+	Scripts         templ.Component
 }
 
-templ Layout(props Props) {
+templ Layout(props LayoutProps) {
 	<!DOCTYPE html>
 	<html lang="en">
 		<head>
@@ -24,36 +26,70 @@ templ Layout(props Props) {
 			/>
 			<meta
  				name="description"
- 				content="{props.PageDescription}"
+ 				if props.PageDescription != "" {
+					content={ props.PageDescription }
+				} else {
+					content="Michael's Personal Website"
+				}
 			/>
 			<meta
  				property="og:title"
- 				content="{props.PageTitle}"
+ 				if props.PageTitle != "" {
+					content={ props.PageTitle }
+				} else {
+					content="Michael Miranda"
+				}
 			/>
 			<meta
  				property="og:description"
- 				content="{props.PageDescription}"
+ 				if props.PageDescription != "" {
+					content={ props.PageDescription }
+				} else {
+					content="Michael's Personal Website"
+				}
 			/>
 			<meta
  				property="og:image"
- 				content="{props.PageImage}"
+ 				if props.PageImage != "" {
+					content={ props.PageImage }
+				} else {
+					content="https://michaelmiranda.dev/public/images/share.png"
+				}
 			/>
 			<meta
  				name="twitter:title"
- 				content="{props.PageTitle}"
+ 				if props.PageTitle != "" {
+					content={ props.PageTitle }
+				} else {
+					content="Michael Miranda"
+				}
 			/>
 			<meta
  				name="twitter:description"
- 				content="{props.PageDescription}"
+ 				if props.PageDescription != "" {
+					content={ props.PageDescription }
+				} else {
+					content="Michael's Personal Website"
+				}
 			/>
 			<meta
  				name="twitter:image"
- 				content="{props.PageImage}"
+ 				if props.PageImage != "" {
+					content={ props.PageImage }
+				} else {
+					content="https://michaelmiranda.dev/public/images/share.png"
+				}
 			/>
-			<title>{ props.PageTitle }</title>
+			<title>
+				if props.PageTitle != "" {
+					{ props.PageTitle }
+				} else {
+					Michael Miranda
+				}
+			</title>
 			<link
  				rel="icon"
- 				href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>"
+ 				href={ fmt.Sprintf("data:image/svg+xml,<svg xmlns=%%22http://www.w3.org/2000/svg%%22 viewBox=%%220 0 100 100%%22><text y=%%22.9em%%22 font-size=%%2290%%22>%s</text></svg>", "🚀") }
  				type="image/svg+xml"
 			/>
 			<link
@@ -80,8 +116,8 @@ templ Layout(props Props) {
 			</main>
 			@Footer()
 		</body>
-		if props.Scripts.Name != "" {
-			@props.Scripts
+		if props.InlineScript.Name != "" {
+			@props.InlineScript
 		}
 	</html>
 }

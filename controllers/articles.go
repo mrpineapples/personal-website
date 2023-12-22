@@ -23,23 +23,11 @@ func GetArticle(c *gin.Context) {
 		return
 	}
 
-	// html, err := article.ToHTML()
-	// if err != nil {
-	// 	panic(err)
-	// }
-
 	if article.Description == "" {
 		article.Description = "An article written by Michael"
 	}
 
 	c.HTML(http.StatusOK, "", components.Article(article))
-
-	// c.HTML(http.StatusOK, "article", gin.H{
-	// 	"PageTitle":       article.Title,
-	// 	"PageDescription": pageDescription,
-	// 	"Article":         article,
-	// 	"Content":         html,
-	// })
 }
 
 func GetArticles(c *gin.Context) {
@@ -49,21 +37,11 @@ func GetArticles(c *gin.Context) {
 	}
 
 	c.HTML(http.StatusOK, "", components.Articles(a, false))
-
-	// c.HTML(http.StatusOK, "articles", gin.H{
-	// 	"PageTitle":       "Michael Miranda | Blog",
-	// 	"PageDescription": "All of Michael's posts",
-	// 	"Articles":        articles,
-	// })
 }
 
 // NewArticle renders the new article view
 func NewArticle(c *gin.Context) {
 	c.HTML(http.StatusOK, "", components.NewArticle())
-	// c.HTML(http.StatusOK, "new-article", gin.H{
-	// 	"PageTitle":    "Admin | Create a Post",
-	// 	"FaviconEmoji": "🛠",
-	// })
 }
 
 // CreateArticle creates a new article in our database

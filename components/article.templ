@@ -52,7 +52,7 @@ script handleCodeBlocks() {
 }
 
 templ Article(article models.Article) {
-	@Layout(Props{Scripts: handleCodeBlocks()}) {
+	@Layout(LayoutProps{PageTitle: article.Title, PageDescription: article.Description, InlineScript: handleCodeBlocks()}) {
 		<article class="max-w-2xl mx-auto overscroll-none">
 			<div
  				x-data="{ percent: 0 }"

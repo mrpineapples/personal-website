@@ -43,13 +43,6 @@ func GetAdminArticles(c *gin.Context) {
 	}
 
 	c.HTML(http.StatusOK, "", components.Articles(articles, true))
-
-	// c.HTML(http.StatusOK, "articles", gin.H{
-	// 	"PageTitle":    "Admin | Posts",
-	// 	"FaviconEmoji": "🛠",
-	// 	"Articles":     articles,
-	// 	"IsAdmin":      true,
-	// })
 }
 
 // EditArticle renders the edit article view
@@ -73,9 +66,4 @@ func EditArticle(c *gin.Context) {
 	article.Slug = slug
 
 	c.HTML(http.StatusOK, "", components.EditArticle(article))
-	// c.HTML(http.StatusOK, "edit-article", gin.H{
-	// 	"PageTitle":    "Editing | " + article.Title,
-	// 	"FaviconEmoji": "🛠",
-	// 	"Article":      article,
-	// })
 }

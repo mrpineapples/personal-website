@@ -5,7 +5,6 @@ go 1.20
 require (
 	github.com/a-h/templ v0.2.476
 	github.com/alecthomas/chroma/v2 v2.2.0
-	github.com/gin-contrib/multitemplate v0.0.0-20230212012517-45920c92c271
 	github.com/gin-gonic/gin v1.9.0
 	github.com/golang-migrate/migrate/v4 v4.16.2
 	github.com/gosimple/slug v1.13.1
