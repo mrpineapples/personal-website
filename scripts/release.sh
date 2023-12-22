@@ -9,7 +9,7 @@ GOOS=linux GOARCH=amd64 go build -o ./build/server .
 echo "  Server built successfully 🏗"
 
 echo "  Bundling code..."
-cp -R database/migrations public templates .env.production Caddyfile build/
+cp -R database/migrations public .env.production Caddyfile build/
 echo "  Bundle created successfully 📦"
 
 echo "  Minifying CSS..."

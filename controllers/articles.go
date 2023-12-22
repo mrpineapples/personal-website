@@ -6,8 +6,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/gosimple/slug"
+	"github.com/mrpineapples/personal-website/components"
 	"github.com/mrpineapples/personal-website/models"
-	"github.com/mrpineapples/personal-website/utils"
 )
 
 var articleInput struct {
@@ -19,47 +19,29 @@ var articleInput struct {
 func GetArticle(c *gin.Context) {
 	article, err := models.GetArticleBySlug(c.Param("slug"))
 	if err != nil {
-		utils.RenderNotFound(c)
+		c.HTML(http.StatusNotFound, "", components.NotFound())
 		return
 	}
 
-	html, err := article.ToHTML()
-	if err != nil {
-		panic(err)
+	if article.Description == "" {
+		article.Description = "An article written by Michael"
 	}
 
-	pageDescription := article.Description
-	if pageDescription == "" {
-		pageDescription = "An article written by Michael"
-	}
-
-	c.HTML(http.StatusOK, "article", gin.H{
-		"PageTitle":       article.Title,
-		"PageDescription": pageDescription,
-		"Article":         article,
-		"Content":         html,
-	})
+	c.HTML(http.StatusOK, "", components.Article(article))
 }
 
 func GetArticles(c *gin.Context) {
-	articles, err := models.GetArticles()
+	a, err := models.GetArticles()
 	if err != nil {
 		panic(err)
 	}
 
-	c.HTML(http.StatusOK, "articles", gin.H{
-		"PageTitle":       "Michael Miranda | Blog",
-		"PageDescription": "All of Michael's posts",
-		"Articles":        articles,
-	})
+	c.HTML(http.StatusOK, "", components.Articles(a, false))
 }
 
 // NewArticle renders the new article view
 func NewArticle(c *gin.Context) {
-	c.HTML(http.StatusOK, "new-article", gin.H{
-		"PageTitle":    "Admin | Create a Post",
-		"FaviconEmoji": "🛠",
-	})
+	c.HTML(http.StatusOK, "", components.NewArticle())
 }
 
 // CreateArticle creates a new article in our database

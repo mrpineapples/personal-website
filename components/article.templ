@@ -1,0 +1,109 @@
+package components
+
+import "github.com/mrpineapples/personal-website/models"
+import "github.com/mrpineapples/personal-website/utils"
+import "html/template"
+
+func insertHTML(h template.HTML) templ.Component {
+	return templ.ComponentFunc(func(ctx context.Context, w io.Writer) error {
+		_, err := io.WriteString(w, string(h))
+		return err
+	})
+}
+
+script handleCodeBlocks() {
+	const copyButtonLabel = "Copy Code";
+	const blocks = document.querySelectorAll(".prose pre");
+
+	blocks.forEach((block) => {
+		const lang = block.parentElement.getAttribute("data-lang");
+		const header = document.createElement("div");
+		header.className = "font-inter flex items-baseline mb-4 select-none";
+		const languageHeading = document.createElement("p");
+		languageHeading.className =
+			"text-base m-0 px-4 pb-1 border-b border-[#ff79c6] md:text-lg";
+		languageHeading.innerText = lang || "Text";
+		header.append(languageHeading);
+		block.tabIndex = "-1";
+		block.prepend(header);
+
+		if (navigator.clipboard) {
+			const button = document.createElement("button");
+			button.className = "text-xs ml-auto p-2 border rounded-lg cursor-pointer";
+			button.innerText = copyButtonLabel;
+			button.addEventListener("click", async () => {
+				await copyCode(block, button);
+			});
+
+			header.append(button);
+		}
+	});
+
+	const copyCode = async (block, button) => {
+		const code = block.querySelector("code");
+		const text = code.innerText.replace(/^\s*[\r\n]/gm, "");
+		await navigator.clipboard.writeText(text);
+		button.innerText = "Copied!";
+
+		setTimeout(() => {
+			button.innerText = copyButtonLabel;
+		}, 750);
+	};
+}
+
+templ Article(article models.Article) {
+	@Layout(LayoutProps{PageTitle: article.Title, PageDescription: article.Description, InlineScript: handleCodeBlocks()}) {
+		<article class="max-w-2xl mx-auto overscroll-none">
+			<div
+ 				x-data="{ percent: 0 }"
+ 				x-init="() => {
+					document.body.classList.add('overscroll-y-none');
+					const updateScrollProgress = () => {
+						const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+						const height = document.documentElement.scrollHeight -
+							document.querySelector('footer').clientHeight -
+							document.documentElement.clientHeight;
+						const scrollPercentage = (scrollTop / height) * 100;
+						percent = Math.min(Math.max(0, scrollPercentage), 100);
+					};
+					
+					window.addEventListener('scroll', updateScrollProgress);
+					updateScrollProgress();
+				}"
+ 				x-cloak
+ 				class="fixed top-12 inset-x-0"
+			>
+				<div
+ 					class="h-1 bg-pink-400"
+ 					:style="`width: ${percent}%`"
+				></div>
+			</div>
+			<div class="mb-10">
+				<h1 class="mb-6 text-4xl text-slate-900 dark:text-white font-semibold leading-none md:text-5xl">
+					{ article.Title }
+				</h1>
+				if article.Description != "" {
+					<h2 class="text-xl leading-snug text-slate-400">
+						{ article.Description }
+					</h2>
+				}
+				<div class="flex items-baseline mt-6 text-slate-400 text-sm">
+					<time
+ 						class="block"
+ 						datetime={ article.CreatedAt.String() }
+					>
+						{ article.CreatedAt.Format("Jan 2, 2006") }
+					</time>
+					<p class="ml-4">{ utils.GetReadingTime(article.Markdown) }</p>
+				</div>
+			</div>
+			if html, err := article.ToHTML(); err == nil {
+				<div
+ 					class="max-w-none md:text-lg prose prose-slate prose-blue dark:prose-invert prose-a:no-underline prose-pre:bg-[#282a36] prose-pre:text-[#f8f8f2] prose-pre:pb-0 md:prose-code:max-h-[500px] prose-code:font-fira"
+				>
+					@insertHTML(html)
+				</div>
+			}
+		</article>
+	}
+}

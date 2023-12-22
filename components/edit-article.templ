@@ -1,0 +1,60 @@
+package components
+
+import "github.com/mrpineapples/personal-website/models"
+import "fmt"
+
+script editEditor(data map[string]any) {
+  const { id, markdown } = data;
+  const easyMDE = new EasyMDE({
+    autosave: {
+      delay: 1000,
+      enabled: true,
+      text: "Last Saved ",
+      uniqueId: `edit-article-${id}`,
+    },
+    element: document.getElementById("markdown"),
+    forceSync: true,
+    maxHeight: "500px",
+    initialValue: markdown,
+  });
+
+  const cancelBtn = document.querySelector("#cancel-edit");
+  cancelBtn.addEventListener("click", () => {
+    easyMDE.clearAutosavedValue();
+  });
+}
+
+templ EditArticle(article models.Article) {
+	@Layout(LayoutProps{
+		PageTitle: "Michael Miranda | Editing | " + article.Title,
+		HeadTags: easyMDETags(), 
+		InlineScript: editEditor(map[string]any{
+        "id": article.ID,
+        "markdown": article.Markdown,
+      }),
+    }) {
+		<div class="max-w-4xl mx-auto">
+			<h1 class="my-4 text-5xl text-slate-900 dark:text-white font-semibold leading-tight">
+				Edit This Post
+			</h1>
+			<form
+ 				action={ templ.URL(fmt.Sprintf("/articles/%d?_method=PUT", article.ID)) }
+ 				method="post"
+			>
+				@ArticleFormFields(article)
+			</form>
+			<form
+ 				id="delete-article-form"
+ 				action={ templ.URL(fmt.Sprintf("/articles/%d?_method=DELETE", article.ID)) }
+ 				method="post"
+ 				x-data
+ 				@submit.prevent="confirm('Are you sure you want to delete this article?') && $el.submit()"
+			>
+				<button
+ 					class="text-red-500"
+ 					type="submit"
+				>Delete</button>
+			</form>
+		</div>
+	}
+}

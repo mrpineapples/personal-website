@@ -1,0 +1,81 @@
+package components
+
+templ Header() {
+	<nav
+ 		class="w-full sticky top-0 z-10 bg-slate-800 text-slate-200 px-5"
+ 		x-data="{ isOpen: false }"
+	>
+		<div class="max-w-4xl mx-auto h-12 flex justify-between items-center">
+			<div class="font-extrabold">
+				<a
+ 					class="text-white hover:text-pink-400"
+ 					href="/"
+				>Michael Miranda</a>
+			</div>
+			<div class="hidden space-x-8 md:flex">
+				<ul class="list-reset flex gap-x-5 flex-1 md:flex-none items-center">
+					<li>
+						<a
+ 							class="inline-block hover:text-pink-400"
+ 							href="/blog"
+						>Blog</a>
+					</li>
+					<li>
+						<a
+ 							class="inline-block hover:text-pink-400"
+ 							href="/about"
+						>About</a>
+					</li>
+					<li>
+						<a
+ 							class="inline-block hover:text-pink-400"
+ 							href="/contact"
+						>Contact</a>
+					</li>
+				</ul>
+			</div>
+			<button
+ 				class="z-10 md:hidden w-10 h-10 relative focus:outline-none"
+ 				@click="isOpen = !isOpen; document.body.classList.toggle('overflow-hidden');"
+			>
+				<span class="sr-only">Open main menu</span>
+				<div class="w-5 absolute left-1/2 top-1/2">
+					<span
+ 						aria-hidden="true"
+ 						class="block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out"
+ 						:class="{'rotate-45': isOpen, '-translate-y-1.5': !isOpen}"
+					></span>
+					<span
+ 						aria-hidden="true"
+ 						class="block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out"
+ 						:class="{'opacity-0': isOpen}"
+					></span>
+					<span
+ 						aria-hidden="true"
+ 						class="block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out"
+ 						:class="{'-rotate-45': isOpen, 'translate-y-1.5': !isOpen}"
+					></span>
+				</div>
+			</button>
+			<div
+ 				:aria-hidden="isOpen"
+ 				class="h-[100vh] w-full absolute left-0 top-0 bg-slate-800"
+ 				x-cloak
+ 				x-show="isOpen"
+ 				x-transition.duration.300ms
+			>
+				<ul class="h-full list-reset flex flex-col my-auto items-center justify-center gap-y-5">
+					<li>
+						<a href="/blog">Blog</a>
+					</li>
+					<li>
+						<a href="/about">About</a>
+					</li>
+					<li>
+						<a href="/contact">Contact</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+}
