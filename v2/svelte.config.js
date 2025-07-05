@@ -3,6 +3,21 @@ import { createHighlighter } from "shiki";
 import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
+const langMap = {
+  css: "CSS",
+  go: "Go",
+  html: "HTML",
+  javascript: "JavaScript",
+  js: "JavaScript",
+  json: "JSON",
+  jsx: "JavaScript",
+  md: "Markdown",
+  sql: "SQL",
+  ts: "TypeScript",
+  tsx: "TypeScript",
+  typescript: "TypeScript"
+};
+
 const mdsvexOptions = {
   extensions: [".md"],
   highlight: {
@@ -13,7 +28,17 @@ const mdsvexOptions = {
       });
       await highlighter.loadLanguage("go", "typescript", "tsx");
       const html = escapeSvelte(
-        highlighter.codeToHtml(code, { lang, theme: "dracula" })
+        highlighter.codeToHtml(code, {
+          lang,
+          theme: "dracula",
+          transformers: [
+            {
+              pre(node) {
+                node.properties["data-lang"] = langMap[lang] || lang;
+              }
+            }
+          ]
+        })
       );
       return `{@html \`${html}\` }`;
     }
