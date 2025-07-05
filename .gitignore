@@ -5,15 +5,33 @@
 *.prof
 *.out
 
-.env.dev
-.env.production
 
+# OS
 .DS_Store
+Thumbs.db
 
-public/styles
+# Output
+.output
+.vercel
+.netlify
+.wrangler
+.svelte-kit
+air
+
 bin/
 build/
 tmp/
 
-# build output
-air
+
+
+node_modules
+
+# Env
+.env
+.env.*
+!.env.template
+!.env.test
+
+# Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
