@@ -46,15 +46,13 @@
 }
 
 /* Global Styles */
-/* add some space betweeen underline and text */
 a:hover {
   text-decoration: underline;
   text-underline-offset: 4px;
 }
 
-/* Custom Code Styling */
-code {
-  color: var(--color-pink-400);
+pre code {
+  @apply block !overflow-scroll pb-4 text-sm;
 }
 
 code::before,
@@ -62,7 +60,6 @@ code::after {
   content: none;
 }
 
-/* Typography Plugin Styles */
-.prose code {
-  color: var(--color-pink-400);
+code {
+  @apply text-pink-400;
 }

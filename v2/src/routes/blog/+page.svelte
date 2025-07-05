@@ -1,8 +1,9 @@
 <script lang="ts">
-  export let articles: any[] = []; // Array of article objects passed as a prop
-  export let isAdmin = false; // Admin flag passed as a prop
+  let { articles = $bindable([]), isAdmin = $bindable(false) } = $props<{
+    articles?: any[];
+    isAdmin?: boolean;
+  }>();
 
-  // Function to format date (similar to Go's "Jan 2, 2006" format)
   const formatDate = (dateString: string): string => {
     const date = new Date(dateString);
     return date.toLocaleDateString("en-US", {
@@ -12,7 +13,6 @@
     });
   };
 
-  // Function to calculate reading time (replace with your actual implementation)
   const getReadingTime = (markdown: string) => {
     const words = markdown.split(/\s+/).length;
     const minutes = Math.ceil(words / 200);
@@ -57,35 +57,6 @@
               Read More ({getReadingTime(article.Markdown)})
               <span aria-hidden="true">→</span>
             </a>
-
-            {#if isAdmin}
-              <div class="mt-4 flex">
-                <a
-                  class="mr-4 hover:text-blue-500"
-                  href={`/admin/blog/${article.Slug}/edit`}
-                >
-                  Edit
-                </a>
-
-                <form
-                  action={`/articles/${article.ID}?_method=DELETE`}
-                  data-article-id={article.ID}
-                  method="post"
-                  on:submit|preventDefault={(e) => {
-                    if (
-                      confirm("Are you sure you want to delete this article?")
-                    ) {
-                      localStorage.removeItem(
-                        `smde_edit-article-${e.target.dataset.articleId}`
-                      );
-                      e.target.submit();
-                    }
-                  }}
-                >
-                  <button class="text-red-500" type="submit"> Delete </button>
-                </form>
-              </div>
-            {/if}
           </div>
         </li>
       {/each}
