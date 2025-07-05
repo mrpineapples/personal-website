@@ -61,7 +61,7 @@ func Articles(articles []models.Article, isAdmin bool) templ.Component {
 					var templ_7745c5c3_Var3 string
 					templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(article.CreatedAt.String())
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/articles.templ`, Line: 22, Col: 46}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `v1/components/articles.templ`, Line: 22, Col: 46}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 					if templ_7745c5c3_Err != nil {
@@ -74,7 +74,7 @@ func Articles(articles []models.Article, isAdmin bool) templ.Component {
 					var templ_7745c5c3_Var4 string
 					templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(article.CreatedAt.Format("Jan 2, 2006"))
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/articles.templ`, Line: 23, Col: 49}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `v1/components/articles.templ`, Line: 23, Col: 49}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
 					if templ_7745c5c3_Err != nil {
@@ -87,7 +87,7 @@ func Articles(articles []models.Article, isAdmin bool) templ.Component {
 					var templ_7745c5c3_Var5 string
 					templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(article.Title)
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/articles.templ`, Line: 26, Col: 24}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `v1/components/articles.templ`, Line: 26, Col: 24}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 					if templ_7745c5c3_Err != nil {
@@ -105,7 +105,7 @@ func Articles(articles []models.Article, isAdmin bool) templ.Component {
 						var templ_7745c5c3_Var6 string
 						templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(article.Description)
 						if templ_7745c5c3_Err != nil {
-							return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/articles.templ`, Line: 29, Col: 81}
+							return templ.Error{Err: templ_7745c5c3_Err, FileName: `v1/components/articles.templ`, Line: 29, Col: 81}
 						}
 						_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 						if templ_7745c5c3_Err != nil {
@@ -123,7 +123,7 @@ func Articles(articles []models.Article, isAdmin bool) templ.Component {
 					var templ_7745c5c3_Var7 templ.SafeURL
 					templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinURLErrs(templ.URL(fmt.Sprintf("/blog/%s", article.Slug)))
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/articles.templ`, Line: 33, Col: 65}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `v1/components/articles.templ`, Line: 33, Col: 65}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 					if templ_7745c5c3_Err != nil {
@@ -136,7 +136,7 @@ func Articles(articles []models.Article, isAdmin bool) templ.Component {
 					var templ_7745c5c3_Var8 string
 					templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(utils.GetReadingTime(article.Markdown))
 					if templ_7745c5c3_Err != nil {
-						return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/articles.templ`, Line: 35, Col: 60}
+						return templ.Error{Err: templ_7745c5c3_Err, FileName: `v1/components/articles.templ`, Line: 35, Col: 60}
 					}
 					_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
 					if templ_7745c5c3_Err != nil {
@@ -154,7 +154,7 @@ func Articles(articles []models.Article, isAdmin bool) templ.Component {
 						var templ_7745c5c3_Var9 templ.SafeURL
 						templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinURLErrs(templ.URL(fmt.Sprintf("/admin/blog/%s/edit", article.Slug)))
 						if templ_7745c5c3_Err != nil {
-							return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/articles.templ`, Line: 42, Col: 78}
+							return templ.Error{Err: templ_7745c5c3_Err, FileName: `v1/components/articles.templ`, Line: 42, Col: 78}
 						}
 						_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
 						if templ_7745c5c3_Err != nil {
@@ -167,7 +167,7 @@ func Articles(articles []models.Article, isAdmin bool) templ.Component {
 						var templ_7745c5c3_Var10 templ.SafeURL
 						templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinURLErrs(templ.URL(fmt.Sprintf("/articles/%d?_method=DELETE", article.ID)))
 						if templ_7745c5c3_Err != nil {
-							return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/articles.templ`, Line: 45, Col: 86}
+							return templ.Error{Err: templ_7745c5c3_Err, FileName: `v1/components/articles.templ`, Line: 45, Col: 86}
 						}
 						_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
 						if templ_7745c5c3_Err != nil {
@@ -180,7 +180,7 @@ func Articles(articles []models.Article, isAdmin bool) templ.Component {
 						var templ_7745c5c3_Var11 string
 						templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(strconv.Itoa(article.ID))
 						if templ_7745c5c3_Err != nil {
-							return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/articles.templ`, Line: 46, Col: 54}
+							return templ.Error{Err: templ_7745c5c3_Err, FileName: `v1/components/articles.templ`, Line: 46, Col: 54}
 						}
 						_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
 						if templ_7745c5c3_Err != nil {
