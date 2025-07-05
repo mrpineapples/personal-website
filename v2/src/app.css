@@ -45,6 +45,13 @@
   src: url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap");
 }
 
+/* Global Styles */
+/* add some space betweeen underline and text */
+a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
 /* Custom Code Styling */
 code {
   color: var(--color-pink-400);
