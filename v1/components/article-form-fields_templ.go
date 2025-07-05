@@ -38,7 +38,7 @@ func ArticleFormFields(article models.Article) templ.Component {
 		var templ_7745c5c3_Var2 string
 		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(article.Title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/article-form-fields.templ`, Line: 17, Col: 25}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `v1/components/article-form-fields.templ`, Line: 17, Col: 25}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 		if templ_7745c5c3_Err != nil {
@@ -51,7 +51,7 @@ func ArticleFormFields(article models.Article) templ.Component {
 		var templ_7745c5c3_Var3 string
 		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(article.Description)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `components/article-form-fields.templ`, Line: 31, Col: 24}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `v1/components/article-form-fields.templ`, Line: 31, Col: 24}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 		if templ_7745c5c3_Err != nil {
