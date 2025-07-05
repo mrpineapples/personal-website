@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600&display=swap");
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* Wave Animation */
+@keyframes wave {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(14deg);
+  }
+  20% {
+    transform: rotate(-8deg);
+  }
+  30% {
+    transform: rotate(14deg);
+  }
+  40% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-wave {
+  animation: wave 2s linear infinite;
+}
+
+/* Custom Fonts */
+@font-face {
+  font-family: "Inter";
+  src: url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+}
+
+@font-face {
+  font-family: "Fira Code";
+  src: url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap");
+}
+
+/* Custom Code Styling */
+code {
+  color: var(--color-pink-400);
+}
+
+code::before,
+code::after {
+  content: none;
+}
+
+/* Typography Plugin Styles */
+.prose code {
+  color: var(--color-pink-400);
+}
