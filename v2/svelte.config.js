@@ -1,9 +1,23 @@
-import { mdsvex } from "mdsvex";
+import { mdsvex, escapeSvelte } from "mdsvex";
+import { createHighlighter } from "shiki";
 import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
 const mdsvexOptions = {
-  extensions: [".md"]
+  extensions: [".md"],
+  highlight: {
+    highlighter: async (code, lang = "text") => {
+      const highlighter = await createHighlighter({
+        themes: ["dracula"],
+        langs: ["go", "typescript", "tsx"]
+      });
+      await highlighter.loadLanguage("go", "typescript", "tsx");
+      const html = escapeSvelte(
+        highlighter.codeToHtml(code, { lang, theme: "dracula" })
+      );
+      return `{@html \`${html}\` }`;
+    }
+  }
 };
 
 /** @type {import('@sveltejs/kit').Config} */

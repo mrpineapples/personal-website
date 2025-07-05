@@ -39,9 +39,9 @@
       {data.post.title}
     </h1>
 
-    <h2 class="text-xl leading-snug text-slate-400">
+    <p class="text-xl leading-snug text-slate-400">
       {data.post.description}
-    </h2>
+    </p>
 
     <!-- <div class="mt-6 flex items-baseline text-sm text-slate-400">
       <time class="block" datetime={data.post.createdAt.String()}>
@@ -54,6 +54,6 @@
   <div
     class="prose prose-slate prose-blue dark:prose-invert prose-a:no-underline prose-pre:bg-[#282a36] prose-pre:text-[#f8f8f2] prose-pre:pb-0 md:prose-code:max-h-[500px] prose-code:font-fira max-w-none md:text-lg"
   >
-    <data.component />
+    <data.content />
   </div>
 </article>
