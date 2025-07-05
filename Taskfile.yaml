@@ -16,10 +16,10 @@ tasks:
     cmds:
       - cmd: |
           if ! type ./bin/tailwindcss &> /dev/null; then
-          	curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-macos-x64
-            chmod +x tailwindcss-macos-x64
+          	curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/download/v3.4.17/tailwindcss-macos-arm64
+            chmod +x tailwindcss-macos-arm64
             mkdir -p bin
-            mv tailwindcss-macos-x64 bin/tailwindcss
+            mv tailwindcss-macos-arm64 bin/tailwindcss
           fi
         silent: true
   get-migrate:

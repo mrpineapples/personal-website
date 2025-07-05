@@ -1,8 +1,12 @@
 package components
 
-import "github.com/mrpineapples/personal-website/models"
-import "github.com/mrpineapples/personal-website/utils"
-import "html/template"
+import (
+	"context"
+	"github.com/mrpineapples/personal-website/models"
+	"github.com/mrpineapples/personal-website/utils"
+	"html/template"
+	"io"
+)
 
 func insertHTML(h template.HTML) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, w io.Writer) error {
@@ -55,8 +59,8 @@ templ Article(article models.Article) {
 	@Layout(LayoutProps{PageTitle: article.Title, PageDescription: article.Description, InlineScript: handleCodeBlocks()}) {
 		<article class="max-w-2xl mx-auto overscroll-none">
 			<div
- 				x-data="{ percent: 0 }"
- 				x-init="() => {
+				x-data="{ percent: 0 }"
+				x-init="() => {
 					document.body.classList.add('overscroll-y-none');
 					const updateScrollProgress = () => {
 						const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
@@ -70,12 +74,12 @@ templ Article(article models.Article) {
 					window.addEventListener('scroll', updateScrollProgress);
 					updateScrollProgress();
 				}"
- 				x-cloak
- 				class="fixed top-12 inset-x-0"
+				x-cloak
+				class="fixed top-12 inset-x-0"
 			>
 				<div
- 					class="h-1 bg-pink-400"
- 					:style="`width: ${percent}%`"
+					class="h-1 bg-pink-400"
+					:style="`width: ${percent}%`"
 				></div>
 			</div>
 			<div class="mb-10">
@@ -89,8 +93,8 @@ templ Article(article models.Article) {
 				}
 				<div class="flex items-baseline mt-6 text-slate-400 text-sm">
 					<time
- 						class="block"
- 						datetime={ article.CreatedAt.String() }
+						class="block"
+						datetime={ article.CreatedAt.String() }
 					>
 						{ article.CreatedAt.Format("Jan 2, 2006") }
 					</time>
@@ -99,7 +103,7 @@ templ Article(article models.Article) {
 			</div>
 			if html, err := article.ToHTML(); err == nil {
 				<div
- 					class="max-w-none md:text-lg prose prose-slate prose-blue dark:prose-invert prose-a:no-underline prose-pre:bg-[#282a36] prose-pre:text-[#f8f8f2] prose-pre:pb-0 md:prose-code:max-h-[500px] prose-code:font-fira"
+					class="max-w-none md:text-lg prose prose-slate prose-blue dark:prose-invert prose-a:no-underline prose-pre:bg-[#282a36] prose-pre:text-[#f8f8f2] prose-pre:pb-0 md:prose-code:max-h-[500px] prose-code:font-fira"
 				>
 					@insertHTML(html)
 				</div>
