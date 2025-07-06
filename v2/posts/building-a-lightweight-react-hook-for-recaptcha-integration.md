@@ -1,5 +1,5 @@
 ---
-date: "2025-07-04"
+date: "2023-06-29"
 title: "Building a lightweight React hook for reCAPTCHA integration"
 description: "Creating a zero dependency reCAPTCHA hook to limit bots in your react application."
 ---
