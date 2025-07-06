@@ -30,10 +30,7 @@ type Post = {
 };
 
 const getMarkdownContent = (filepath: string): string => {
-  const fullPath = path.resolve(
-    "src/posts",
-    filepath.replace(/^\/src\/posts\//, "")
-  );
+  const fullPath = path.join(process.cwd(), filepath);
   return fs.readFileSync(fullPath, "utf-8");
 };
 
