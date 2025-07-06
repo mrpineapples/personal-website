@@ -2,6 +2,11 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+@theme {
+  --font-inter: "Inter", sans-serif;
+  --font-fira: "Fira Code", monospace;
+}
+
 /* Wave Animation */
 @keyframes wave {
   0% {

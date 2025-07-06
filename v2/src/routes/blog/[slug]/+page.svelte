@@ -36,7 +36,7 @@
       header.className = "font-inter flex items-baseline mb-4 select-none";
       const languageHeading = document.createElement("p");
       languageHeading.className =
-        "text-base !m-0 px-4 pb-1 border-b border-[#ff79c6] md:text-lg";
+        "text-base !m-0 px-2 pb-1 border-b border-[#ff79c6] md:text-lg";
       languageHeading.innerText = lang || "Text";
       header.append(languageHeading);
       block.tabIndex = -1;
