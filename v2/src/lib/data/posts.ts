@@ -1,8 +1,5 @@
-import path from "path";
-import fs from "fs";
 import { browser } from "$app/environment";
 import { format } from "date-fns";
-import readingTime from "reading-time";
 
 if (browser) {
   throw new Error("posts can only be imported server-side");
@@ -29,11 +26,6 @@ type Post = {
   previous?: Post;
 };
 
-const getMarkdownContent = (filepath: string): string => {
-  const fullPath = path.join(process.cwd(), filepath);
-  return fs.readFileSync(fullPath, "utf-8");
-};
-
 const addTimezoneOffset = (date: Date) => {
   const offsetInMilliseconds = new Date().getTimezoneOffset() * 60 * 1000;
   return new Date(new Date(date).getTime() + offsetInMilliseconds);
@@ -52,7 +44,7 @@ export const posts: Post[] = Object.entries<MDsveXPost>(
             "MMM dd, yyyy"
           )
         : undefined,
-      readingTime: readingTime(getMarkdownContent(filepath)),
+      readingTime: {},
       slug: filepath
         .replace(/(\/index)?\.md/, "")
         .split("/")
