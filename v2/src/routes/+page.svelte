@@ -1,5 +1,9 @@
+<script lang="ts">
+  const { data } = $props();
+  const { recentPosts } = data;
+</script>
+
 <div class="mx-auto max-w-lg md:max-w-4xl">
-  <!-- Intro -->
   <div class="mb-20 flex flex-col md:flex-row">
     <img
       class="mb-10 h-32 w-32 self-center rounded-full md:mb-0 md:mr-10 md:h-64 md:w-64"
@@ -26,7 +30,6 @@
       </div>
     </div>
   </div>
-  <!-- Skills -->
   <div class="mb-12 flex flex-col">
     <h1
       class="mb-6 w-max border-b-2 border-pink-300 pb-2 text-3xl font-semibold leading-tight text-slate-900 md:text-4xl dark:border-pink-400 dark:text-white"
@@ -161,7 +164,6 @@
       </li>
     </ul>
   </div>
-  <!-- Blog Posts -->
   <div class="flex flex-col md:text-lg">
     <h1
       class="mb-6 w-max border-b-2 border-pink-300 pb-2 text-3xl font-semibold leading-tight text-slate-900 md:text-4xl dark:border-pink-400 dark:text-white"
@@ -169,17 +171,19 @@
       Latest Writing
     </h1>
     <ul class="mb-6">
-      <li>
-        <span class="mr-1" aria-hidden="true"> &#128279; </span>
-        <!-- <a href={ templ.URL(fmt.Sprintf("/blog/%s", article.Slug)) }>
-								{ article.Title }
-							</a> -->
-      </li>
+      {#each recentPosts as post}
+        <li>
+          <span class="mr-1" aria-hidden="true"> &#128279; </span>
+          <a href={`/blog/${post.slug}`}>
+            {post.title}
+          </a>
+        </li>
+      {/each}
     </ul>
     <p>
-      Check out the rest of my <a class="text-blue-500" href="/blog"
-        >blog posts</a
-      >.
+      Check out the rest of my <a class="text-blue-500" href="/blog">
+        blog posts
+      </a>.
     </p>
   </div>
 </div>

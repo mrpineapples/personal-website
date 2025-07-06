@@ -21,7 +21,7 @@ const langMap = {
 const mdsvexOptions = {
   extensions: [".md"],
   highlight: {
-    highlighter: async (code, lang = "text") => {
+    highlighter: async (code, lang = "Text") => {
       const highlighter = await createHighlighter({
         themes: ["dracula"],
         langs: ["go", "typescript", "tsx"]

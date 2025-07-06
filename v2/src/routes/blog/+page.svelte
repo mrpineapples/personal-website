@@ -1,8 +1,6 @@
 <script lang="ts">
-  let { articles = $bindable([]), isAdmin = $bindable(false) } = $props<{
-    articles?: any[];
-    isAdmin?: boolean;
-  }>();
+  const { data } = $props();
+  const { posts } = data;
 
   const formatDate = (dateString: string): string => {
     const date = new Date(dateString);
@@ -28,42 +26,40 @@
   </h1>
 
   <ul>
-    {#if articles.length > 0}
-      {#each articles as article}
+    {#if posts.length > 0}
+      {#each posts as post}
         <li
           class="flex flex-wrap gap-x-8 gap-y-4 border-t border-slate-300 py-8 leading-normal md:flex-nowrap"
         >
           <time
             class="w-full shrink-0 text-slate-500 md:w-28 dark:text-slate-400"
-            datetime={article.CreatedAt}
+            datetime={post.date}
           >
-            {formatDate(article.CreatedAt)}
+            {formatDate(post.date)}
           </time>
 
           <div class="flex flex-col">
             <h2
               class="mb-4 text-2xl font-medium text-slate-900 dark:text-white"
             >
-              {article.Title}
+              {post.title}
             </h2>
 
-            {#if article.Description}
+            {#if post.description}
               <p class="mb-4 text-slate-500 dark:text-slate-400">
-                {article.Description}
+                {post.description}
               </p>
             {/if}
 
-            <a class="max-w-max text-blue-500" href={`/blog/${article.Slug}`}>
-              Read More ({getReadingTime(article.Markdown)})
+            <a class="max-w-max text-blue-500" href={`/blog/${post.slug}`}>
+              Read More ({post.readingTime.text})
               <span aria-hidden="true">→</span>
             </a>
           </div>
         </li>
       {/each}
     {:else}
-      <li class="mb-8 text-2xl leading-normal">
-        No articles exist, how sad 😢
-      </li>
+      <li class="mb-8 text-2xl leading-normal">No posts exist, how sad 😢</li>
     {/if}
   </ul>
 </div>

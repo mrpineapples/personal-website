@@ -5,7 +5,7 @@ import { format } from "date-fns";
 import readingTime from "reading-time";
 
 if (browser) {
-  throw new Error(`posts can only be imported server-side`);
+  throw new Error("posts can only be imported server-side");
 }
 
 type MDsveXPost = {
@@ -43,7 +43,6 @@ export const posts: Post[] = Object.entries<MDsveXPost>(
   import.meta.glob("/posts/**/*.md", { eager: true })
 )
   .map(([filepath, post]) => {
-    console.log("post", post);
     return {
       ...post.metadata,
       isIndexFile: filepath.endsWith("/index.md"),
@@ -66,3 +65,5 @@ export const posts: Post[] = Object.entries<MDsveXPost>(
     next: allPosts[index - 1],
     previous: allPosts[index + 1]
   }));
+
+export const recentPosts = posts.slice(0, 3);

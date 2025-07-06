@@ -1,7 +1,8 @@
 <script lang="ts">
-  let isOpen = false;
+  import { fade, scale } from "svelte/transition";
+  import { backOut } from "svelte/easing";
+  let isOpen = $state(false);
 
-  // Toggle the menu and handle body overflow
   const toggleMenu = () => {
     isOpen = !isOpen;
     if (isOpen) {
@@ -9,6 +10,11 @@
     } else {
       document.body.classList.remove("overflow-hidden");
     }
+  };
+
+  const closeMenu = () => {
+    isOpen = false;
+    document.body.classList.remove("overflow-hidden");
   };
 </script>
 
@@ -33,7 +39,7 @@
     </div>
     <button
       class="relative z-10 h-10 w-10 focus:outline-none md:hidden"
-      on:click={toggleMenu}
+      onclick={toggleMenu}
     >
       <span class="sr-only">Open main menu</span>
       <div class="absolute left-1/2 top-1/2 w-5">
@@ -57,18 +63,42 @@
       </div>
     </button>
     {#if isOpen}
-      <div class="absolute left-0 top-0 h-[100vh] w-full bg-slate-800">
+      <div
+        class="absolute left-0 top-0 h-[100vh] w-full bg-slate-800"
+        transition:fade={{ duration: 300 }}
+      >
         <ul
           class="list-reset my-auto flex h-full flex-col items-center justify-center gap-y-5"
         >
-          <li>
-            <a href="/blog">Blog</a>
+          <li
+            transition:scale={{
+              duration: 300,
+              delay: 100,
+              start: 0.5,
+              easing: backOut
+            }}
+          >
+            <a href="/blog" onclick={closeMenu}>Blog</a>
           </li>
-          <li>
-            <a href="/about">About</a>
+          <li
+            transition:scale={{
+              duration: 300,
+              delay: 200,
+              start: 0.5,
+              easing: backOut
+            }}
+          >
+            <a href="/about" onclick={closeMenu}>About</a>
           </li>
-          <li>
-            <a href="/contact">Contact</a>
+          <li
+            transition:scale={{
+              duration: 300,
+              delay: 300,
+              start: 0.5,
+              easing: backOut
+            }}
+          >
+            <a href="/contact" onclick={closeMenu}>Contact</a>
           </li>
         </ul>
       </div>
