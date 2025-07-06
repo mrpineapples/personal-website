@@ -1,9 +1,9 @@
-<script>
-  let { data } = $props();
+<script lang="ts">
+  const { data } = $props();
+  const { post, content: Content } = data;
 
   let percent = $state(0);
 
-  // Scroll progress logic
   $effect(() => {
     document.body.classList.add("overscroll-y-none");
 
@@ -28,7 +28,7 @@
 
   $effect(() => {
     const copyButtonLabel = "Copy Code";
-    const blocks = document.querySelectorAll(".prose pre");
+    const blocks = document.querySelectorAll<HTMLElement>(".prose pre");
 
     blocks.forEach((block) => {
       const lang = block.getAttribute("data-lang");
@@ -39,7 +39,7 @@
         "text-base !m-0 px-4 pb-1 border-b border-[#ff79c6] md:text-lg";
       languageHeading.innerText = lang || "Text";
       header.append(languageHeading);
-      block.tabIndex = "-1";
+      block.tabIndex = -1;
       block.prepend(header);
 
       if (navigator.clipboard) {
@@ -55,10 +55,10 @@
       }
     });
 
-    const copyCode = async (block, button) => {
+    const copyCode = async (block: HTMLElement, button: HTMLButtonElement) => {
       const code = block.querySelector("code");
-      const text = code.innerText.replace(/^\s*[\r\n]/gm, "");
-      await navigator.clipboard.writeText(text);
+      const text = code?.innerText.replace(/^\s*[\r\n]/gm, "");
+      await navigator.clipboard.writeText(text || "");
       button.innerText = "Copied!";
 
       setTimeout(() => {
@@ -77,24 +77,23 @@
     <h1
       class="mb-6 text-4xl font-semibold leading-none text-slate-900 md:text-5xl dark:text-white"
     >
-      {data.post.title}
+      {post.title}
     </h1>
 
     <p class="text-xl leading-snug text-slate-400">
-      {data.post.description}
+      {post.description}
     </p>
 
-    <!-- <div class="mt-6 flex items-baseline text-sm text-slate-400">
-      <time class="block" datetime={data.post.createdAt.String()}>
-        {data.post.createdAt.Format("Jan 2, 2006")}
+    <div class="mt-6 flex items-baseline text-sm text-slate-400">
+      <time class="block" datetime={post.date}>
+        {post.date}
       </time>
-      <p class="ml-4">{utils.GetReadingTime(article.Markdown)}</p>
-    </div> -->
+      <p class="ml-4">{post.readingTime.text}</p>
+    </div>
   </div>
-
   <div
     class="prose prose-slate prose-blue dark:prose-invert prose-a:no-underline prose-pre:bg-[#282a36] prose-pre:text-[#f8f8f2] prose-pre:pb-0 md:prose-code:max-h-[500px] prose-code:font-fira max-w-none md:text-lg"
   >
-    <data.content />
+    <Content />
   </div>
 </article>
