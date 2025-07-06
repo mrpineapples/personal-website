@@ -7,7 +7,16 @@
   --font-fira: "Fira Code", monospace;
 }
 
-/* Wave Animation */
+@font-face {
+  font-family: "Inter";
+  src: url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+}
+
+@font-face {
+  font-family: "Fira Code";
+  src: url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap");
+}
+
 @keyframes wave {
   0% {
     transform: rotate(0deg);
@@ -39,18 +48,7 @@
   animation: wave 2s linear infinite;
 }
 
-/* Custom Fonts */
-@font-face {
-  font-family: "Inter";
-  src: url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
-}
-
-@font-face {
-  font-family: "Fira Code";
-  src: url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap");
-}
-
-main a:hover {
+a:not(nav a):hover {
   text-decoration: underline;
   text-underline-offset: 4px;
 }
