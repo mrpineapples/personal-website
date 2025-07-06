@@ -1,5 +1,6 @@
 import { browser } from "$app/environment";
 import { format } from "date-fns";
+import readingTime from "reading-time";
 
 if (browser) {
   throw new Error("posts can only be imported server-side");
@@ -31,10 +32,16 @@ const addTimezoneOffset = (date: Date) => {
   return new Date(new Date(date).getTime() + offsetInMilliseconds);
 };
 
+const rawFiles = import.meta.glob("/src/posts/**/*.md", {
+  eager: true,
+  as: "raw"
+});
+
 export const posts: Post[] = Object.entries<MDsveXPost>(
   import.meta.glob("/src/posts/**/*.md", { eager: true })
 )
   .map(([filepath, post]) => {
+    const rawText = rawFiles[filepath];
     return {
       ...post.metadata,
       isIndexFile: filepath.endsWith("/index.md"),
@@ -44,7 +51,7 @@ export const posts: Post[] = Object.entries<MDsveXPost>(
             "MMM dd, yyyy"
           )
         : undefined,
-      readingTime: {},
+      readingTime: readingTime(rawText),
       slug: filepath
         .replace(/(\/index)?\.md/, "")
         .split("/")
