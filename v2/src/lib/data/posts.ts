@@ -30,7 +30,10 @@ type Post = {
 };
 
 const getMarkdownContent = (filepath: string): string => {
-  const fullPath = path.resolve("posts", filepath.replace(/^\/posts\//, ""));
+  const fullPath = path.resolve(
+    "src/posts",
+    filepath.replace(/^\/src\/posts\//, "")
+  );
   return fs.readFileSync(fullPath, "utf-8");
 };
 
@@ -40,7 +43,7 @@ const addTimezoneOffset = (date: Date) => {
 };
 
 export const posts: Post[] = Object.entries<MDsveXPost>(
-  import.meta.glob("/posts/**/*.md", { eager: true })
+  import.meta.glob("/src/posts/**/*.md", { eager: true })
 )
   .map(([filepath, post]) => {
     return {
