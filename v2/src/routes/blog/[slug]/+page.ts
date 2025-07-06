@@ -1,12 +1,17 @@
 import type { PageLoad } from "./$types";
 
 export const load: PageLoad = async ({ data }) => {
-  const content = data.post.isIndexFile
-    ? await import(`../../../../posts/${data.post.slug}/index.md`)
-    : await import(`../../../../posts/${data.post.slug}.md`);
+  const { post } = data;
+  const content = post.isIndexFile
+    ? await import(`../../../../posts/${post.slug}/index.md`)
+    : await import(`../../../../posts/${post.slug}.md`);
 
   return {
-    post: data.post,
-    content: content.default
+    ...data,
+    content: content.default,
+    meta: {
+      title: post.title,
+      description: post.description
+    }
   };
 };
