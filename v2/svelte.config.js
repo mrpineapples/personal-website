@@ -18,15 +18,23 @@ const langMap = {
   typescript: "TypeScript"
 };
 
+let highlighterInstance = null;
+
+const getHighlighter = async () => {
+  if (!highlighterInstance) {
+    highlighterInstance = await createHighlighter({
+      themes: ["dracula"],
+      langs: ["go", "typescript", "tsx"]
+    });
+  }
+  return highlighterInstance;
+};
+
 const mdsvexOptions = {
   extensions: [".md"],
   highlight: {
     highlighter: async (code, lang = "Text") => {
-      const highlighter = await createHighlighter({
-        themes: ["dracula"],
-        langs: ["go", "typescript", "tsx"]
-      });
-      await highlighter.loadLanguage("go", "typescript", "tsx");
+      const highlighter = await getHighlighter();
       const html = escapeSvelte(
         highlighter.codeToHtml(code, {
           lang,

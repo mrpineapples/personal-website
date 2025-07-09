@@ -20,7 +20,7 @@
 
 <nav class="sticky top-0 z-10 w-full bg-slate-800 px-5 text-slate-200">
   <div class="mx-auto flex h-12 max-w-4xl items-center justify-between">
-    <div class="font-extrabold">
+    <div class="font-semibold">
       <a class="text-white hover:text-pink-400" href="/">Michael Miranda</a>
     </div>
     <div class="hidden space-x-8 md:flex">
