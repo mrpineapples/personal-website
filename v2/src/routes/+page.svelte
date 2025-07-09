@@ -6,8 +6,8 @@
 <div class="mx-auto max-w-lg md:max-w-4xl">
   <div class="mb-20 flex flex-col md:flex-row">
     <img
-      class="mb-10 h-32 w-32 self-center rounded-full md:mb-0 md:mr-10 md:h-64 md:w-64"
-      src="/images/headshot.webp"
+      class="mb-10 h-32 w-32 self-center rounded-full object-cover md:mb-0 md:mr-10 md:h-64 md:w-64"
+      src="/images/headshot.jpeg"
       alt="Headshot of Michael Miranda"
     />
     <div>
@@ -22,9 +22,9 @@
           experiences, and maybe even a few hot takes on the tech industry.
         </p>
         <p class="text-lg md:text-xl">
-          Find me on Twitter
-          <a class="text-blue-500" href="https://twitter.com/mrpineapples24">
-            &#64;mrpineapples24
+          Find me on
+          <a class="text-blue-500" href="https://github.com/mrpineapples">
+            GitHub
           </a>
         </p>
       </div>

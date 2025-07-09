@@ -11,10 +11,6 @@
         class="text-blue-500"
         href="mailto:michael@miranda.gg">michael@miranda.gg</a
       >
-      or on Twitter as
-      <a class="text-blue-500" href="https://twitter.com/mrpineapples24">
-        &#64;mrpineapples24
-      </a>.
     </p>
     <p class="mb-4">
       Feel free to have a look around my
@@ -22,7 +18,7 @@
         LinkedIn profile
       </a>. My open source contributions are made on my
       <a class="text-blue-500" href="https://github.com/mrpineapples">
-        Github profile
+        GitHub profile
       </a>.
     </p>
   </div>

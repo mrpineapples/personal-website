@@ -5,8 +5,9 @@
       <p class="text-lg">
         Congratulations on scrolling all the way down! If you want to stay in
         touch, follow me on
-        <a href="https://twitter.com/mrpineapples24" class="text-blue-500"
-          >Twitter</a
+        <a
+          href="https://linkedin.com/in/michaelmiranda18/"
+          class="text-blue-500">LinkedIn</a
         >!
       </p>
     </div>
@@ -19,9 +20,6 @@
           </li>
           <li>
             <a href="https://linkedin.com/in/michaelmiranda18/">LinkedIn</a>
-          </li>
-          <li>
-            <a href="https://twitter.com/mrpineapples24">Twitter</a>
           </li>
         </ul>
       </div>

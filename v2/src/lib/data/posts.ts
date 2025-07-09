@@ -32,9 +32,10 @@ const addTimezoneOffset = (date: Date) => {
   return new Date(new Date(date).getTime() + offsetInMilliseconds);
 };
 
-const rawFiles = import.meta.glob("/src/posts/**/*.md", {
+const rawFiles = import.meta.glob<string>("/src/posts/**/*.md", {
   eager: true,
-  as: "raw"
+  query: "?raw",
+  import: "default"
 });
 
 export const posts: Post[] = Object.entries<MDsveXPost>(

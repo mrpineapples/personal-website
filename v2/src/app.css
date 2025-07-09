@@ -5,6 +5,7 @@
 @theme {
   --font-inter: "Inter", sans-serif;
   --font-fira: "Fira Code", monospace;
+  --animate-wave: wave 2s linear infinite;
 }
 
 @font-face {
@@ -42,10 +43,6 @@
   100% {
     transform: rotate(0deg);
   }
-}
-
-.animate-wave {
-  animation: wave 2s linear infinite;
 }
 
 a:not(nav a):hover {
