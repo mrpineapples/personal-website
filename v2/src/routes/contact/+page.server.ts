@@ -1,6 +1,6 @@
-import type { PageLoad } from "./$types";
+import type { PageServerLoad } from "./$types";
 
-export const load: PageLoad = () => {
+export const load: PageServerLoad = () => {
   return {
     meta: {
       title: "Michael Miranda | Contact",

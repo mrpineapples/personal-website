@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
@@ -6,16 +6,6 @@
   --font-inter: "Inter", sans-serif;
   --font-fira: "Fira Code", monospace;
   --animate-wave: wave 2s linear infinite;
-}
-
-@font-face {
-  font-family: "Inter";
-  src: url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
-}
-
-@font-face {
-  font-family: "Fira Code";
-  src: url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap");
 }
 
 @keyframes wave {
