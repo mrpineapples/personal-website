@@ -1,5 +1,6 @@
 import { mdsvex, escapeSvelte } from "mdsvex";
 import { createHighlighter } from "shiki";
+import { importAssets } from "svelte-preprocess-import-assets";
 import adapter from "@sveltejs/adapter-auto";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -18,23 +19,15 @@ const langMap = {
   typescript: "TypeScript"
 };
 
-let highlighterInstance = null;
-
-const getHighlighter = async () => {
-  if (!highlighterInstance) {
-    highlighterInstance = await createHighlighter({
-      themes: ["dracula"],
-      langs: ["go", "typescript", "tsx"]
-    });
-  }
-  return highlighterInstance;
-};
-
 const mdsvexOptions = {
   extensions: [".md"],
   highlight: {
     highlighter: async (code, lang = "Text") => {
-      const highlighter = await getHighlighter();
+      const highlighter = await createHighlighter({
+        themes: ["dracula"],
+        langs: ["go", "typescript", "tsx"]
+      });
+      await highlighter.loadLanguage("go", "typescript", "tsx");
       const html = escapeSvelte(
         highlighter.codeToHtml(code, {
           lang,
@@ -57,7 +50,7 @@ const mdsvexOptions = {
 const config = {
   // Consult https://svelte.dev/docs/kit/integrations
   // for more information about preprocessors
-  preprocess: [vitePreprocess(), mdsvex(mdsvexOptions)],
+  preprocess: [vitePreprocess(), mdsvex(mdsvexOptions), importAssets()],
   kit: {
     // adapter-auto only supports some environments, see https://svelte.dev/docs/kit/adapter-auto for a list.
     // If your environment is not supported, or you settled on a specific environment, switch out the adapter.

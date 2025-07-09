@@ -7,7 +7,7 @@
   <div class="mb-20 flex flex-col md:flex-row">
     <img
       class="mb-10 h-32 w-32 self-center rounded-full object-cover md:mb-0 md:mr-10 md:h-64 md:w-64"
-      src="/images/headshot.jpeg"
+      src="$lib/images/headshot.jpeg"
       alt="Headshot of Michael Miranda"
     />
     <div>
@@ -53,7 +53,7 @@
           >
             <img
               class="w-1/2"
-              src="/images/logos/javascript.svg"
+              src="$lib/images/logos/javascript.svg"
               alt="JavaScript logo"
             />
           </div>
@@ -70,7 +70,7 @@
           >
             <img
               class="w-1/2"
-              src="/images/logos/node.svg"
+              src="$lib/images/logos/node.svg"
               alt="Node JS logo"
             />
           </div>
@@ -87,7 +87,7 @@
           >
             <img
               class="w-1/2"
-              src="/images/logos/typescript.svg"
+              src="$lib/images/logos/typescript.svg"
               alt="TypeScript logo"
             />
           </div>
@@ -104,7 +104,7 @@
           >
             <img
               class="w-1/2"
-              src="/images/logos/go.svg"
+              src="$lib/images/logos/go.svg"
               alt="Go programming language logo"
             />
           </div>
@@ -121,7 +121,7 @@
           >
             <img
               class="w-1/2"
-              src="/images/logos/react.svg"
+              src="$lib/images/logos/react.svg"
               alt="React JS logo"
             />
           </div>
@@ -138,7 +138,7 @@
           >
             <img
               class="w-1/2"
-              src="/images/logos/tailwind.svg"
+              src="$lib/images/logos/tailwind.svg"
               alt="Tailwind CSS logo"
             />
           </div>
@@ -155,7 +155,7 @@
           >
             <img
               class="w-1/2"
-              src="/images/logos/postgres.svg"
+              src="$lib/images/logos/postgres.svg"
               alt="Postgres logo"
             />
           </div>
