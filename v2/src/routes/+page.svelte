@@ -12,7 +12,7 @@
     />
     <div>
       <h1
-        class="mb-10 text-center text-4xl font-semibold leading-tight text-slate-900 md:text-left md:text-5xl dark:text-white"
+        class="mb-10 text-center text-4xl font-medium leading-tight text-slate-900 md:text-left md:text-5xl dark:text-white"
       >
         Hey! I'm Michael <span class="animate-wave inline-block">👋🏼</span>
       </h1>
@@ -32,7 +32,7 @@
   </div>
   <div class="mb-12 flex flex-col">
     <h1
-      class="mb-6 w-max border-b-2 border-pink-300 pb-2 text-3xl font-semibold leading-tight text-slate-900 md:text-4xl dark:border-pink-400 dark:text-white"
+      class="mb-6 w-max border-b-2 border-pink-300 pb-2 text-3xl font-medium leading-tight text-slate-900 md:text-4xl dark:border-pink-400 dark:text-white"
     >
       Technologies
     </h1>
@@ -166,7 +166,7 @@
   </div>
   <div class="flex flex-col md:text-lg">
     <h1
-      class="mb-6 w-max border-b-2 border-pink-300 pb-2 text-3xl font-semibold leading-tight text-slate-900 md:text-4xl dark:border-pink-400 dark:text-white"
+      class="mb-6 w-max border-b-2 border-pink-300 pb-2 text-3xl font-medium leading-tight text-slate-900 md:text-4xl dark:border-pink-400 dark:text-white"
     >
       Latest Writing
     </h1>

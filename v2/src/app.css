@@ -1,9 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Lexend+Deca:wght@100..900&display=swap");
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --font-inter: "Inter", sans-serif;
+  --font-lexend: "Lexend Deca", sans-serif;
   --font-fira: "Fira Code", monospace;
   --animate-wave: wave 2s linear infinite;
 }

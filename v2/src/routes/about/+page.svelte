@@ -22,7 +22,7 @@
 
 <div class="mx-auto min-h-screen max-w-4xl md:mt-44">
   <h1
-    class="mb-10 text-4xl font-semibold leading-tight text-slate-900 md:text-5xl dark:text-white"
+    class="mb-10 text-4xl font-medium leading-tight text-slate-900 md:text-5xl dark:text-white"
   >
     About Michael
   </h1>

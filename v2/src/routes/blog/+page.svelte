@@ -20,7 +20,7 @@
 
 <div class="mx-auto max-w-4xl md:min-h-screen">
   <h1
-    class="mb-5 text-4xl font-semibold text-slate-900 md:text-5xl dark:text-white"
+    class="mb-5 text-4xl font-medium text-slate-900 md:text-5xl dark:text-white"
   >
     All Posts 📝
   </h1>

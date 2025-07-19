@@ -75,7 +75,7 @@
 
   <div class="mb-10">
     <h1
-      class="mb-6 text-4xl font-semibold leading-none text-slate-900 md:text-5xl dark:text-white"
+      class="mb-6 text-4xl font-medium leading-none text-slate-900 md:text-5xl dark:text-white"
     >
       {post.title}
     </h1>
