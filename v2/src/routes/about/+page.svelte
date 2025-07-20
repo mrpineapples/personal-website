@@ -17,7 +17,7 @@
     return age;
   };
 
-  const age = $derived(calculateAge());
+  const age = calculateAge();
 </script>
 
 <div class="mx-auto min-h-screen max-w-4xl md:mt-44">
